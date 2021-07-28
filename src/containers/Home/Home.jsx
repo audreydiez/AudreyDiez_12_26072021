@@ -2,6 +2,7 @@ import { Component } from 'react'
 import './Home.scss'
 
 import logo from './../../assets/images/logo.svg'
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
     render() {
@@ -12,7 +13,9 @@ class Home extends Component {
                     <h1 className="home__popin--title">
                         Bienvenue <span className="text-color">Maurice</span>
                     </h1>
-                    <button className="home__popin--btn">Voir mon dashboard</button>
+                    <Link to="/dashboard">
+                        <button className="home__popin--btn">Voir mon dashboard</button>
+                    </Link>
                 </div>
             </div>
         )

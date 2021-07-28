@@ -1,5 +1,4 @@
 @import './../../assets/styles/mixins.scss';
-@import './../../assets/styles/variables.scss';
 
 .home {
     width: 100%;
@@ -49,7 +48,7 @@
             background-color: $colour-primary;
             text-align: center;
             border-radius: 5px;
-            border: 0px solid transparent;
+            border: 0 solid transparent;
             text-transform: uppercase;
             color: $font-color-light;
             font-weight: 500;
