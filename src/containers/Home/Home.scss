@@ -1,0 +1,62 @@
+@import './../../assets/styles/mixins.scss';
+@import './../../assets/styles/variables.scss';
+
+.home {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: $background-tiles;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__popin {
+        width: 450px;
+        height: auto;
+        padding: 2rem;
+        background-color: #fff;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        border-radius: 5px;
+
+        @include breakpoint(l) {
+            width: 180px;
+        }
+
+        &--logo {
+            margin: 1rem 0;
+        }
+
+        &--title {
+            flex-basis: 100%;
+            text-align: center;
+            margin-top: 1rem;
+
+            .text-color {
+                color: $colour-primary;
+            }
+        }
+
+        &--btn {
+            margin: 3rem auto 2rem auto;
+            width: 250px;
+            height: 45px;
+            background-color: $colour-primary;
+            text-align: center;
+            border-radius: 5px;
+            border: 0px solid transparent;
+            text-transform: uppercase;
+            color: $font-color-light;
+            font-weight: 500;
+
+            @include breakpoint(l) {
+                height: 65px;
+            }
+        }
+    }
+}
