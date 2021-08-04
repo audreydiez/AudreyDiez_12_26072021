@@ -1,18 +1,22 @@
 import { Component } from 'react'
 import './Dashboard.scss'
 
-import Navigation from '../../components/Navigation/Navigation'
+import MainNavigation from '../../components/Navigation/MainNavigation/MainNavigation'
 import Header from '../../components/Header/Header'
+import SideNavigation from '../../components/Navigation/SideNavigation/SideNavigation'
 
 class Dashboard extends Component {
     render() {
         return (
-            <main className="dashboard">
-                <div className="nav-container">
-                    <Navigation />
-                </div>
-                <Header />
-            </main>
+            <>
+                <MainNavigation />
+                <main className="dashboard">
+                    <SideNavigation />
+                    <div className="main-content">
+                        <Header />
+                    </div>
+                </main>
+            </>
         )
     }
 }
