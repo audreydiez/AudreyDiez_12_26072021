@@ -56,17 +56,56 @@ class MainNavigation extends Component {
                         </li>
                         <li className="main-nav--list--hamburger" onClick={this.handleClickBurger}>
                             <Link to="/dashboard">
-                                <span />
-                                <span />
-                                <span />
+                                <span
+                                    className={`hamburger ${
+                                        this.state.responsiveMenuToggle ? 'active' : ''
+                                    }`}
+                                />
+                                <span
+                                    className={`hamburger ${
+                                        this.state.responsiveMenuToggle ? 'active' : ''
+                                    }`}
+                                />
+                                <span
+                                    className={`hamburger ${
+                                        this.state.responsiveMenuToggle ? 'active' : ''
+                                    }`}
+                                />
                             </Link>
                         </li>
                     </ul>
                 </nav>
-                <ResponsiveNavigation
-                    isActive={this.state.responsiveMenuToggle}
-                    key={this.state.key}
-                />
+                {/*Responsive menu*/}
+                <div className={`menu-nav ${this.state.responsiveMenuToggle ? 'active' : ''}`}>
+                    <ul className="menu-link">
+                        <li>
+                            <Link to="/dashboard">Accueil</Link>
+                        </li>
+                        <li>
+                            <Link to="/dashboard">Profil</Link>
+                        </li>
+                        <li>
+                            <Link to="/dashboard">Réglage</Link>
+                        </li>
+                        <li>
+                            <Link to="/dashboard">Communauté</Link>
+                        </li>
+                    </ul>
+                    <div className="menu-activity">
+                        <div className="menu-activity__icon">
+                            <img src={yogaIcon} alt="Page d'accueil" />
+                        </div>
+                        <div className="menu-activity__icon">
+                            <img src={swimIcon} alt="Page d'accueil" />
+                        </div>
+                        <div className="menu-activity__icon">
+                            <img src={bicycleIcon} alt="Page d'accueil" />
+                        </div>
+                        <div className="menu-activity__icon">
+                            <img src={weightIcon} alt="Page d'accueil" />
+                        </div>
+                    </div>
+                </div>
             </>
         )
     }
