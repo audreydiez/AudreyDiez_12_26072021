@@ -11,6 +11,27 @@ import weightIcon from '../../../assets/images/weight.svg'
 import ResponsiveNavigation from '../ResponsiveNavigation/ResponsiveNavigation'
 
 class MainNavigation extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            responsiveMenuToggle: false,
+            key: 0,
+        }
+    }
+
+    handleClickBurger = () => {
+        const newKey = this.state.key + 1
+        this.setState({
+            responsiveMenuToggle: !this.state.responsiveMenuToggle,
+            key: newKey,
+        })
+        console.log(this.state.responsiveMenuToggle)
+        console.log(this.state.key)
+    }
+
+    renderResponsiveMenu = () => {}
+
     render() {
         return (
             <>
@@ -33,7 +54,7 @@ class MainNavigation extends Component {
                         <li className="main-nav--list--link">
                             <Link to="/dashboard">Communauté</Link>
                         </li>
-                        <li className="main-nav--list--hamburger">
+                        <li className="main-nav--list--hamburger" onClick={this.handleClickBurger}>
                             <Link to="/dashboard">
                                 <span />
                                 <span />
@@ -42,7 +63,10 @@ class MainNavigation extends Component {
                         </li>
                     </ul>
                 </nav>
-                <ResponsiveNavigation />
+                <ResponsiveNavigation
+                    isActive={this.state.responsiveMenuToggle}
+                    key={this.state.key}
+                />
             </>
         )
     }

@@ -10,9 +10,20 @@ import bicycleIcon from '../../../assets/images/vtt.svg'
 import weightIcon from '../../../assets/images/weight.svg'
 
 class ResponsiveNavigation extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            responsiveMenuToggle: false,
+        }
+    }
+    componentDidMount() {
+        this.setState({ responsiveMenuToggle: this.props.isActive })
+    }
+
     render() {
         return (
-            <div className="menu-nav active">
+            <div className={`menu-nav ${this.state.responsiveMenuToggle ? 'active' : ''}`}>
                 <ul className="menu-link">
                     <li className="">
                         <Link to="/dashboard">Accueil</Link>
