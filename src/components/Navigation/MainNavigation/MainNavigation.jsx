@@ -8,7 +8,6 @@ import yogaIcon from '../../../assets/images/yoga.svg'
 import swimIcon from '../../../assets/images/swiming.svg'
 import bicycleIcon from '../../../assets/images/vtt.svg'
 import weightIcon from '../../../assets/images/weight.svg'
-import ResponsiveNavigation from '../ResponsiveNavigation/ResponsiveNavigation'
 
 class MainNavigation extends Component {
     constructor(props) {
@@ -26,8 +25,6 @@ class MainNavigation extends Component {
             responsiveMenuToggle: !this.state.responsiveMenuToggle,
             key: newKey,
         })
-        console.log(this.state.responsiveMenuToggle)
-        console.log(this.state.key)
     }
 
     renderResponsiveMenu = () => {}
@@ -35,6 +32,7 @@ class MainNavigation extends Component {
     render() {
         return (
             <>
+                {/*Main menu top*/}
                 <nav role="main" className="main-nav">
                     <ul className="main-nav--list">
                         <li>

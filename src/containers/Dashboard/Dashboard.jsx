@@ -8,7 +8,7 @@ import SideNavigation from '../../components/Navigation/SideNavigation/SideNavig
 class Dashboard extends Component {
     render() {
         return (
-            <>
+            <div className="wrapper">
                 <MainNavigation />
                 <main className="dashboard">
                     <SideNavigation />
@@ -16,7 +16,7 @@ class Dashboard extends Component {
                         <Header />
                     </div>
                 </main>
-            </>
+            </div>
         )
     }
 }
