@@ -4,7 +4,7 @@ import './Icons.scss'
 import { Link } from 'react-router-dom'
 
 class Icons extends Component {
-    iconsRender = () => {
+    render() {
         return (
             <>
                 {this.props.workouts.map((src, index) => (
@@ -14,10 +14,6 @@ class Icons extends Component {
                 ))}
             </>
         )
-    }
-
-    render() {
-        return this.iconsRender()
     }
 }
 

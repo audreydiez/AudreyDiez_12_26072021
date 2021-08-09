@@ -1,0 +1,49 @@
+[
+    {
+        "FR": {
+            "navigation": {
+                "menuIcon": [
+                    { "name": "Yoga", "file": "yoga.svg" },
+                    { "name": "Natation", "file": "swimming.svg" },
+                    { "name": "Vélo", "file": "vtt.svg" },
+                    { "name": "Musculation", "file": "weight.svg" }
+                ],
+                "navLinks": ["Accueil", "Profil", "Réglages", "Communauté"],
+                "copyrights": "Copyright, SportSee 2020"
+            },
+            "welcome": {
+                "title": "Bonjour",
+                "subTitle": "Félicitation ! Vous avez explosé vos objectifs hier \uD83D\uDC4F"
+            },
+            "macroNutriments": [
+                { "name": "Calories", "file": "calories-icon.svg" },
+                { "name": "Protéines", "file": "calories-icon.svg" },
+                { "name": "Glucides", "file": "calories-icon.svg" },
+                { "name": "Lipides", "file": "calories-icon.svg" }
+            ],
+            "charts": {
+                "AverageThemeRadar": [
+                    "Intensité",
+                    "Vitesse",
+                    "Force",
+                    "Endurance",
+                    "Energie",
+                    "Cardio"
+                ],
+                "DailyTrackerBar": {
+                    "title": "Activité quotidienne",
+                    "weight": "Poids (kg)",
+                    "CaloriesBurned": "Calories brûlées (kCal)",
+                    "maxDays": 10
+                },
+                "AverageWeeklyWorkoutLine": {
+                    "title": "Durée moyenne des sessions"
+                },
+                "GoalTrackerPercentage": {
+                    "title": "Score",
+                    "goal": "de votre objectif"
+                }
+            }
+        }
+    }
+]
