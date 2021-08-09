@@ -1,10 +1,77 @@
 @import '../../../assets/styles/mixins';
 
 .side-bar {
-    background-color: cornflowerblue;
+    display: flex;
+    flex-direction: column;
+
+    background-color: $colour-secondary;
     width: 120px;
     height: calc(100% - 100px);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-size: 1.5rem;
-    color: white;
+
+    justify-content: space-between;
+    align-items: center;
+
+    &__icons {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-top: 10vh;
+
+        align-items: center;
+        align-content: center;
+
+        @include breakpoint(xl) {
+            flex-direction: row;
+            margin-top: 0;
+        }
+
+        li {
+            width: 64px;
+            height: 64px;
+            background-color: $background-icon;
+            border-radius: $border-radius-xs;
+
+            margin: 1rem 0;
+            display: flex;
+
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+
+            img {
+                max-width: 36px;
+                max-height: auto;
+            }
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                cursor: pointer;
+            }
+
+            @include breakpoint(xl) {
+                flex-direction: row;
+                margin: 0 1rem;
+            }
+        }
+    }
+    &__copyright {
+        writing-mode: vertical-lr;
+        transform: rotate(180deg);
+
+        margin-bottom: 5rem;
+        font-size: 1rem;
+
+        @include breakpoint(xl) {
+            display: none;
+        }
+    }
+
+    @include breakpoint(xl) {
+        display: none;
+        width: 100%;
+        height: 80px;
+
+        justify-content: center;
+    }
 }
