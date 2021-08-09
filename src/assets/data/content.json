@@ -4,25 +4,28 @@
             "title": "Bienvenue",
             "button": "Voir mon dashboard"
         },
-        "navigation": {
-            "menuIcon": [
-                { "name": "Yoga", "file": "yoga.svg" },
-                { "name": "Natation", "file": "swimming.svg" },
-                { "name": "Vélo", "file": "vtt.svg" },
-                { "name": "Musculation", "file": "weight.svg" }
-            ],
-            "navLinks": ["Accueil", "Profil", "Réglages", "Communauté"],
-            "copyrights": "Copyright, SportSee 2020"
+        "mainNav": {
+            "sideNav": {
+                "menuIcon": {
+                    "yoga": "Yoga",
+                    "swim": "Natation",
+                    "bicycle": "Vélo",
+                    "weightLift": "Musculation"
+                },
+                "copyrights": "Copyright, SportSee 2020"
+            },
+            "navLinks": ["Accueil", "Profil", "Réglages", "Communauté"]
         },
+
         "welcome": {
             "title": "Bonjour",
             "subTitle": "Félicitation ! Vous avez explosé vos objectifs hier \uD83D\uDC4F"
         },
         "macroNutriments": [
-            { "name": "Calories", "file": "calories-icon.svg" },
-            { "name": "Protéines", "file": "calories-icon.svg" },
-            { "name": "Glucides", "file": "calories-icon.svg" },
-            { "name": "Lipides", "file": "calories-icon.svg" }
+            { "name": "Calories", "file": "calories-icon.svg", "alt": "Calories" },
+            { "name": "Protéines", "file": "calories-icon.svg", "alt": "Protéines" },
+            { "name": "Glucides", "file": "calories-icon.svg", "alt": "Glucides" },
+            { "name": "Lipides", "file": "calories-icon.svg", "alt": "Lipides" }
         ],
         "charts": {
             "AverageThemeRadar": [

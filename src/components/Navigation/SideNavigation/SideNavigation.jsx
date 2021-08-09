@@ -1,8 +1,6 @@
 import { Component } from 'react'
 import './SideNavigation.scss'
 
-import Icons from '../../Icons/Icons'
-
 import yogaIcon from './../../../assets/images/yoga.svg'
 import swimIcon from './../../../assets/images/swiming.svg'
 import bicycleIcon from './../../../assets/images/vtt.svg'
@@ -15,20 +13,20 @@ class SideNavigation extends Component {
             <div className="side-bar">
                 <ul className="side-bar__icons">
                     <li>
-                        <img src={yogaIcon} alt="Page d'accueil" />
+                        <img src={yogaIcon} alt={this.props.data.menuIcon.yoga} />
                     </li>
                     <li>
-                        <img src={yogaIcon} alt="Page d'accueil" />
+                        <img src={swimIcon} alt={this.props.data.menuIcon.swim} />
                     </li>
                     <li>
-                        <img src={yogaIcon} alt="Page d'accueil" />
+                        <img src={bicycleIcon} alt={this.props.data.menuIcon.bicycle} />
                     </li>
                     <li>
-                        <img src={yogaIcon} alt="Page d'accueil" />
+                        <img src={weightIcon} alt={this.props.data.menuIcon.weightLift} />
                     </li>
                 </ul>
                 <Link to="/dashboard" className="side-bar__copyright">
-                    Copiryght, SportSee 2020
+                    {this.props.data.copyrights}
                 </Link>
             </div>
         )

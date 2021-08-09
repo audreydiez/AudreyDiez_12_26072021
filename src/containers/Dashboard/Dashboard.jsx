@@ -11,11 +11,20 @@ import MacroTracker from 'components/Charts/MacroTracker/MacroTracker'
 import Welcome from '../../components/Welcome/Welcome'
 
 class Dashboard extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            navLinks: this.props.data.mainNav.navLinks,
+            sideNav: this.props.data.mainNav.sideNav,
+        }
+    }
+
     render() {
         return (
             <div className="wrapper">
-                <Navigation />
-                <SideNavigation />
+                <Navigation data={this.state.navLinks} />
+                <SideNavigation data={this.state.sideNav} />
                 <main className="main">
                     <Welcome />
                 </main>
