@@ -10,16 +10,7 @@ import weightIcon from './../../../assets/images/weight.svg'
 
 class SideNavigation extends Component {
     render() {
-        const iconsToDisplay = [yogaIcon, swimIcon, bicycleIcon, weightIcon]
-
-        return (
-            <nav role="side-nav" className="side-nav-container">
-                <div className="activities">
-                    <Icons workouts={iconsToDisplay} />
-                </div>
-                <div className="copyright">Copiryght, SportSee 2021</div>
-            </nav>
-        )
+        return <div className="side-bar">side</div>
     }
 }
 

@@ -11,10 +11,14 @@ class Home extends Component {
                 <div className="home__popin">
                     <img src={logo} alt="Logo" className="home__popin--logo" />
                     <h1 className="home__popin--title">
-                        Bienvenue <span className="text-color">Maurice</span>
+                        {this.props.data.connexion.title}{' '}
+                        <span className="text-color">Maurice </span>
                     </h1>
+
                     <Link to="/dashboard">
-                        <button className="home__popin--btn">Voir mon dashboard</button>
+                        <button className="home__popin--btn">
+                            {this.props.data.connexion.button}
+                        </button>
                     </Link>
                 </div>
             </div>

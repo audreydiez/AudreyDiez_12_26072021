@@ -1,19 +1,16 @@
 @import '../../assets/styles/mixins';
 
 .wrapper {
-    height: 100%;
     margin: 0;
+    height: 100%;
+
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-    .dashboard {
-        flex: 2;
-        display: flex;
-
-        .main-content {
-            flex: 1 1;
-            min-height: 100%;
-            margin: 4rem 5rem;
-        }
+    .main {
+        flex-grow: 1;
+        padding: 3rem 4rem;
+        background-color: bisque;
     }
 }
