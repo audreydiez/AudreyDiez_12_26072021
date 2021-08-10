@@ -8,9 +8,34 @@ import weightIcon from './../../../assets/images/weight.svg'
 import { Link } from 'react-router-dom'
 
 class SideNavigation extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            iconsToggled: this.props.iconsToggled,
+            windowWidth: window.innerWidth,
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.updateDimension)
+    }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateDimension)
+    }
+
+    updateDimension = () => {
+        this.setState({ windowWidth: window.innerWidth })
+
+        this.setState({ iconsToggled: false })
+    }
+
     render() {
+        const iconsMenu = this.state.windowWidth <= 1024 ? 'hidden' : ''
+        const toggleMenu = this.state.iconsToggled ? 'active' : ''
+
         return (
-            <div className="side-bar">
+            <div className={`side-bar ${iconsMenu} ${toggleMenu}`}>
                 <ul className="side-bar__icons">
                     <li>
                         <img src={yogaIcon} alt={this.props.data.menuIcon.yoga} />

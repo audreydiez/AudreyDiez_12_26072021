@@ -6,10 +6,10 @@ class Welcome extends Component {
         return (
             <div>
                 <h1>
-                    Bonjour <span className="txt-colored">Germaine</span>
+                    Bonjour <span className="txt-colored">Poisson</span>
                 </h1>
                 <div className="mindset">
-                    Félicitation ! Vous avez explosé vos objectifs hier 👏
+                    Alors ? on a peur de se noyer avec un verre d'eau ? 👏
                 </div>
             </div>
         )

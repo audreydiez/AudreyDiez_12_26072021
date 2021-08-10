@@ -17,14 +17,29 @@ class Dashboard extends Component {
         this.state = {
             navLinks: this.props.data.mainNav.navLinks,
             sideNav: this.props.data.mainNav.sideNav,
+            iconsToggled: false,
+            key: 0,
         }
+    }
+
+    toggleResponsiveIcons = () => {
+        const newKey = this.state.key + 1
+        console.log('icon toggle')
+        this.setState({ iconsToggled: !this.state.iconsToggled, key: newKey })
     }
 
     render() {
         return (
             <div className="wrapper">
-                <Navigation data={this.state.navLinks} />
-                <SideNavigation data={this.state.sideNav} />
+                <Navigation
+                    data={this.state.navLinks}
+                    toggleResponsiveIcons={this.toggleResponsiveIcons}
+                />
+                <SideNavigation
+                    data={this.state.sideNav}
+                    iconsToggled={this.state.iconsToggled}
+                    key={this.state.key}
+                />
                 <main className="main">
                     <Welcome />
                 </main>

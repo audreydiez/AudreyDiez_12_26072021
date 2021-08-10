@@ -15,10 +15,6 @@ class Navigation extends Component {
         ))
     }
 
-    handleClickBurger = () => {
-        console.log('clic')
-    }
-
     render() {
         return (
             <nav className="navigation">
@@ -29,7 +25,7 @@ class Navigation extends Component {
                         </Link>
                     </li>
                     {this.getNavLinks()}
-                    <li className="main-nav__burger" onClick={this.handleClickBurger}>
+                    <li className="main-nav__burger" onClick={this.props.toggleResponsiveIcons}>
                         <span className="line" />
                         <span className="line" />
                         <span className="line" />
