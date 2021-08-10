@@ -1,9 +1,9 @@
 import { Component } from 'react'
 import './Dashboard.scss'
 
-import Navigation from 'components/Navigation/Navigation/'
+import MainNavigation from 'components/Navigation/MainNavigation/MainNavigation'
 import SideNavigation from '../../components/Navigation/SideNavigation/SideNavigation'
-import AverageWeeklyLine from 'components/Charts/AverageWeeklyWorkoutLine/AverageWeeklyLine'
+import AverageWeeklyLine from 'components/Charts/AverageWeeklyLine/AverageWeeklyLine'
 import AverageThemeRadar from 'components/Charts/AverageThemeRadar/AverageThemeRadar'
 import DailyTrackerBar from 'components/Charts/DailyTrackerBar/DailyTrackerBar'
 import GoalTrackerPercentage from 'components/Charts/GoalTrackerPercentage/GoalTrackerPercentage'
@@ -31,7 +31,7 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="wrapper">
-                <Navigation
+                <MainNavigation
                     data={this.state.navLinks}
                     toggleResponsiveIcons={this.toggleResponsiveIcons}
                 />

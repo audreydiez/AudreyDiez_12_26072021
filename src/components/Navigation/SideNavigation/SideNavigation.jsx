@@ -26,7 +26,6 @@ class SideNavigation extends Component {
 
     updateDimension = () => {
         this.setState({ windowWidth: window.innerWidth })
-
         this.setState({ iconsToggled: false })
     }
 

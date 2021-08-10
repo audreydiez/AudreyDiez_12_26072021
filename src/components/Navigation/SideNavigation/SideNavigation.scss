@@ -41,7 +41,6 @@
 
             img {
                 max-width: 36px;
-                max-height: auto;
             }
 
             &:hover {
@@ -53,14 +52,22 @@
                 flex-direction: row;
                 margin: 0 1rem;
             }
+            @include breakpoint(s) {
+                width: 45px;
+                height: 45px;
+                img {
+                    max-width: 25px;
+                }
+            }
         }
     }
 
     @include breakpoint(xl) {
         display: flex;
         width: 100%;
-        height: 80px;
-        justify-content: center;
+        height: 100px;
+        justify-content: flex-start;
+        align-items: center;
     }
 
     &.hidden {
@@ -68,6 +75,7 @@
     }
     &.active {
         display: flex;
+        margin-bottom: 80px;
     }
 
     &__copyright {
