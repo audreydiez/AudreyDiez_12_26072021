@@ -6,11 +6,10 @@ class Welcome extends Component {
         return (
             <div>
                 <h1>
-                    Bonjour <span className="txt-colored">Poisson</span>
+                    {this.props.contentData.title}{' '}
+                    <span className="txt-colored">{this.props.userData}</span>
                 </h1>
-                <div className="mindset">
-                    Alors ? on a peur de se noyer avec un verre d'eau ? 👏
-                </div>
+                <div className="mindset">{this.props.contentData.subTitle}</div>
             </div>
         )
     }
