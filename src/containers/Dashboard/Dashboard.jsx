@@ -71,14 +71,16 @@ class Dashboard extends Component {
                         contentData={this.state.welcomeContent}
                     />
                     <div className="statistics">
-                        <div className="statistics__column">
-                            <div className="column-inner">daily</div>
+                        <div className="statistics__column left">
+                            <div className="column-inner">
+                                <DailyTrackerBar />
+                            </div>
                             <div className="column-inner">average session</div>
                             <div className="column-inner">radar</div>
                             <div className="column-inner">score</div>
                         </div>
-                        <div className="statistics__column">
-                            <div className="macro-tracker">Macro</div>
+                        <div className="statistics__column right">
+                            <div className="macro-tracker">Macrossss</div>
                         </div>
                     </div>
                 </main>
