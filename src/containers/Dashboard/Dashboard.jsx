@@ -20,11 +20,12 @@ class Dashboard extends Component {
             navLinks: this.props.data.mainNav.navLinks,
             sideNav: this.props.data.mainNav.sideNav,
             welcomeContent: this.props.data.welcome,
+            macroTrackerContent: this.props.data.macroNutriments,
             iconsToggled: false,
             key: 0,
             id: 18,
             firstName: null,
-            keyData: null,
+            keyData: '',
             loader: false,
         }
 
@@ -44,7 +45,7 @@ class Dashboard extends Component {
     updateUserProfile = async () => {
         try {
             const data = await this.services.getUserProfile(this.state.id)
-            console.log(data)
+            console.log(data.keyData)
             this.setState({
                 id: this.props.id,
                 firstName: data.userInfos.firstName,
@@ -86,10 +87,10 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         <div className="statistics__column right">
-                            <MacroTracker />
-                            <MacroTracker />
-                            <MacroTracker />
-                            <MacroTracker />
+                            <MacroTracker
+                                contentData={this.state.macroTrackerContent}
+                                userData={this.state.keyData}
+                            />
                         </div>
                     </div>
                 </main>

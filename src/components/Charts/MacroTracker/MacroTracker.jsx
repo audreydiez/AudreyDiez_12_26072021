@@ -1,21 +1,35 @@
 import { Component } from 'react'
 import './MacroTracker.scss'
-import yogaIcon from '../../../assets/images/yoga.svg'
 
 class MacroTracker extends Component {
     render() {
         return (
-            <div className="macro-tracker">
-                <div className="container">
-                    <div className="icon-container">
-                        <img src={yogaIcon} alt="" />
+            <>
+                {this.props.contentData.map((contentData, index) => (
+                    <div className="macro-tracker" key={index}>
+                        <div className="container">
+                            <div className="icon-container">
+                                <img src={'images/' + contentData.file} alt={contentData.alt} />
+                            </div>
+                            <div className="content-container">
+                                {Object.entries(this.props.userData).map(([key, value]) => {
+                                    if (key.toString() === contentData.name.toString()) {
+                                        return (
+                                            <>
+                                                <span className="data">
+                                                    {value.toString()}
+                                                    {contentData.value}
+                                                </span>
+                                                <span className="legend">{contentData.alt}</span>
+                                            </>
+                                        )
+                                    }
+                                })}
+                            </div>
+                        </div>
                     </div>
-                    <div className="content-container">
-                        <span className="data">1,852kCal</span>
-                        <span className="legend">Calories</span>
-                    </div>
-                </div>
-            </div>
+                ))}
+            </>
         )
     }
 }

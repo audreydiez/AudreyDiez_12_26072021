@@ -22,14 +22,29 @@
             "subTitle": "Félicitation ! Vous avez explosé vos objectifs hier \uD83D\uDC4F"
         },
         "macroNutriments": [
-            { "name": "Calories", "file": "calories-icon.svg", "alt": "Calories" },
-            { "name": "Protéines", "file": "calories-icon.svg", "alt": "Protéines" },
-            { "name": "Glucides", "file": "calories-icon.svg", "alt": "Glucides" },
-            { "name": "Lipides", "file": "calories-icon.svg", "alt": "Lipides" }
+            {
+                "name": "calorieCount",
+                "file": "calories-icon.svg",
+                "alt": "Calories",
+                "value": "kCal"
+            },
+            {
+                "name": "proteinCount",
+                "file": "protein-icon.svg",
+                "alt": "Protéines",
+                "value": "g"
+            },
+            {
+                "name": "carbohydrateCount",
+                "file": "carbs-icon.svg",
+                "alt": "Glucides",
+                "value": "g"
+            },
+            { "name": "lipidCount", "file": "fat-icon.svg", "alt": "Lipides", "value": "g" }
         ],
         "charts": {
             "AverageThemeRadar": [
-                "Intensité",
+                "Intensité userData[index] === contentData.name ? '' : ''",
                 "Vitesse",
                 "Force",
                 "Endurance",
