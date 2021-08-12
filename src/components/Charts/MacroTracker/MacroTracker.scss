@@ -1,0 +1,58 @@
+@import '../../../assets/styles/mixins';
+
+.macro-tracker {
+    //background-color: $background-tiles;
+    border-radius: $border-radius-xs;
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        background-color: cadetblue;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        width: calc(100% - 3rem);
+
+        .icon-container {
+            width: 60px;
+            height: 60px;
+            background-color: $colour-primary;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            align-self: center;
+            margin-left: 1rem;
+
+            .data {
+                flex-basis: 100%;
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+            .legend {
+                flex-basis: 100%;
+                color: rgba(0, 0, 0, 0.8);
+                font-size: 0.9rem;
+                margin-top: 0.3rem;
+            }
+        }
+    }
+}

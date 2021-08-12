@@ -75,12 +75,21 @@ class Dashboard extends Component {
                             <div className="column-inner">
                                 <DailyTrackerBar />
                             </div>
-                            <div className="column-inner">average session</div>
-                            <div className="column-inner">radar</div>
-                            <div className="column-inner">score</div>
+                            <div className="column-inner">
+                                <AverageWeeklyLine />
+                            </div>
+                            <div className="column-inner">
+                                <AverageThemeRadar />
+                            </div>
+                            <div className="column-inner">
+                                <GoalTrackerPercentage />
+                            </div>
                         </div>
                         <div className="statistics__column right">
-                            <div className="macro-tracker">Macrossss</div>
+                            <MacroTracker />
+                            <MacroTracker />
+                            <MacroTracker />
+                            <MacroTracker />
                         </div>
                     </div>
                 </main>
