@@ -37,22 +37,21 @@ class Dashboard extends Component {
         this.services
             .getUserProfile(this.state.id)
             .then((r) => {
+                console.log(r)
                 this.setState({
                     id: this.props.id,
-                    firstName: r.userInfos.firstName,
-                    keyData: r.keyData,
+                    firstName: r.data.data.userInfos.firstName,
+                    keyData: r.data.data.keyData,
                     errMsg: '',
                     errModal: false,
                 })
             })
             .catch((err) => {
                 this.setState({
-                    errMsg: 'Erreur de chargement des données : ' + err,
+                    errMsg: 'Erreur de chargement des données utilisateurs: ' + err,
                     errModal: true,
                 })
             })
-
-        //TODO axios, pas de fonction ailleurs
     }
 
     // Allow display menu icons on middle devices screens with burger menu
