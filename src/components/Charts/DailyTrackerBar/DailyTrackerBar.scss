@@ -1,1 +1,52 @@
 @import '../../../assets/styles/mixins';
+
+.activity-chart-legend {
+    width: calc(100% - 4rem);
+    height: 50px;
+    margin: 0.5rem 2rem 3rem 2rem;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    align-items: center;
+    justify-content: space-between;
+
+    color: #20253a;
+
+    .chart-title {
+        margin: 0;
+        padding: 0;
+        font-size: 1.1rem;
+        color: #20253a;
+        font-weight: 500;
+    }
+    .charts-legend {
+        text-align: right;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        align-items: center;
+
+        .legend {
+            margin: 0 0 0 3rem;
+
+            .bullet {
+                height: 10px;
+                width: 10px;
+
+                border-radius: 50%;
+                display: inline-block;
+                margin-right: 0.8rem;
+
+                &__black {
+                    background-color: $colour-secondary;
+                }
+                &__red {
+                    background-color: $colour-primary;
+                }
+            }
+        }
+    }
+}

@@ -37,9 +37,7 @@ class Dashboard extends Component {
         this.services
             .getUserProfile(this.state.id)
             .then((r) => {
-                console.log(r)
                 this.setState({
-                    id: this.props.id,
                     firstName: r.data.data.userInfos.firstName,
                     keyData: r.data.data.keyData,
                     errMsg: '',
@@ -96,16 +94,16 @@ class Dashboard extends Component {
                     <div className="statistics">
                         <div className="statistics__column left">
                             <div className="column-inner">
-                                <DailyTrackerBar />
+                                <DailyTrackerBar userID={this.state.id} />
                             </div>
                             <div className="column-inner">
-                                <AverageWeeklyLine />
+                                <AverageWeeklyLine userID={this.state.id} />
                             </div>
                             <div className="column-inner">
-                                <AverageThemeRadar />
+                                <AverageThemeRadar userID={this.state.id} />
                             </div>
                             <div className="column-inner">
-                                <GoalTrackerPercentage />
+                                <GoalTrackerPercentage userID={this.state.id} />
                             </div>
                         </div>
                         <div className="statistics__column right">
