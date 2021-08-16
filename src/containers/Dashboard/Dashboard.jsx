@@ -26,37 +26,60 @@ class Dashboard extends Component {
             id: 18,
             firstName: null,
             keyData: '',
-            loader: false,
+            msg: 'Chargement en cours',
         }
 
+        // Axios fetching service
         this.services = new Services()
     }
 
     componentDidMount() {
-        this.updateUserProfile().then((r) => {})
+        this.services
+            .getUserProfile(this.state.id)
+            .then((r) => {
+                this.setState({
+                    id: this.props.id,
+                    firstName: r.userInfos.firstName,
+                    keyData: r.keyData,
+                    errMsg: '',
+                    errModal: false,
+                })
+            })
+            .catch((err) => {
+                this.setState({
+                    errMsg: 'Erreur de chargement des données : ' + err,
+                    errModal: true,
+                })
+            })
+
+        //TODO axios, pas de fonction ailleurs
     }
 
+    // Allow display menu icons on middle devices screens with burger menu
     toggleResponsiveIcons = () => {
         const newKey = this.state.key + 1
-        console.log('icon toggle')
         this.setState({ iconsToggled: !this.state.iconsToggled, key: newKey })
     }
 
-    updateUserProfile = async () => {
-        try {
-            const data = await this.services.getUserProfile(this.state.id)
-            console.log(data.keyData)
-            this.setState({
-                id: this.props.id,
-                firstName: data.userInfos.firstName,
-                keyData: data.keyData,
-            })
-        } catch (err) {}
+    displayModalError = () => {
+        return (
+            <div className={`overlay-error ${this.state.errModal ? 'active' : ''}`}>
+                <div className="overlay-error__modal">
+                    <span>{this.state.errMsg}</span>
+                    <button onClick={this.closeModalError}>Fermer</button>
+                </div>
+            </div>
+        )
+    }
+
+    closeModalError = () => {
+        this.setState({ errModal: false })
     }
 
     render() {
         return (
             <div className="wrapper">
+                {this.displayModalError()}
                 <MainNavigation
                     data={this.state.navLinks}
                     toggleResponsiveIcons={this.toggleResponsiveIcons}

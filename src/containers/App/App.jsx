@@ -17,6 +17,9 @@ class App extends Component {
         }
     }
 
+    //todo fetch
+    //didmount -> fetch (promise avec fail, sucess) puis setstate + spinner
+
     render() {
         return (
             <Router>
