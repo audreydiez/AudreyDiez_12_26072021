@@ -1,0 +1,18 @@
+@import '../../../assets/styles/mixins';
+
+.line-chart {
+    background-color: $colour-primary;
+    border-radius: $border-radius-xs;
+    min-height: 263px;
+    position: relative;
+
+    .average-sessions-chart-legend {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70%;
+        padding: 2rem 2rem 0 2rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.2rem;
+    }
+}

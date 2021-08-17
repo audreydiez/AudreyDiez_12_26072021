@@ -39,7 +39,7 @@ class DailyTrackerBar extends Component {
                 let userActivity = []
                 r.data.data.sessions.map((data) => {
                     userActivity.push({
-                        day: data.day.slice(-2),
+                        day: data.day.slice(-1),
                         kg: data.kilogram,
                         kCal: data.calories,
                     })
@@ -51,7 +51,6 @@ class DailyTrackerBar extends Component {
                     minValueYaxisKcal: Math.min(...userActivity.map(({ kCal }) => kCal)) - 50,
                     maxValueYaxisKcal: Math.max(...userActivity.map(({ kCal }) => kCal)) + 50,
                 })
-                console.log(userActivity)
             })
             .catch((err) => {
                 this.setState({
@@ -85,7 +84,13 @@ class DailyTrackerBar extends Component {
                     >
                         <CartesianGrid strokeDasharray="3 3" vertical={false} />
                         {/*Horizontal*/}
-                        <XAxis dy={15} dataKey="day" tickLine={false} tick={{ fontSize: 16 }} />
+                        <XAxis
+                            dy={15}
+                            dataKey="day"
+                            tickLine={false}
+                            tick={{ fontSize: 16 }}
+                            stroke={'#9B9EAC'}
+                        />
                         {/*Vertical*/}
                         <YAxis
                             yAxisId="kg"
@@ -96,6 +101,7 @@ class DailyTrackerBar extends Component {
                             tickLine={false}
                             domain={[this.state.minValueYaxisKg, this.state.maxValueYaxisKg]}
                             tick={{ fontSize: 16 }}
+                            stroke={'#9B9EAC'}
                         />
                         <YAxis
                             yAxisId="kCal"
