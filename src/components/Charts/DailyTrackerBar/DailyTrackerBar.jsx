@@ -12,6 +12,7 @@ import {
     ResponsiveContainer,
 } from 'recharts'
 import Services from '../../../services/Services'
+import CustomTooltip from '../CustomTooltip/CustomTooltip'
 
 class DailyTrackerBar extends Component {
     constructor(props) {
@@ -78,7 +79,7 @@ class DailyTrackerBar extends Component {
                 <ResponsiveContainer width="99%" height="65%">
                     <BarChart
                         data={this.state.userActivity}
-                        barCategoryGap={60}
+                        barCategoryGap="35%"
                         barGap={8}
                         margin={{ top: 0, right: 0, bottom: 10, left: 35 }}
                     >
@@ -102,7 +103,7 @@ class DailyTrackerBar extends Component {
                             hide={true}
                             domain={[this.state.minValueYaxisKcal, this.state.maxValueYaxisKcal]}
                         />
-                        <Tooltip />
+                        <Tooltip content={<CustomTooltip />} cursor={{ fill: '#e0e0e0' }} />
 
                         <Bar
                             yAxisId="kg"
