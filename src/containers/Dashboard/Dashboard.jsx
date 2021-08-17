@@ -26,6 +26,7 @@ class Dashboard extends Component {
             id: 18,
             firstName: null,
             keyData: '',
+            dayScore: 0,
             msg: 'Chargement en cours',
         }
 
@@ -40,6 +41,7 @@ class Dashboard extends Component {
                 this.setState({
                     firstName: r.data.data.userInfos.firstName,
                     keyData: r.data.data.keyData,
+                    dayScore: r.data.data.score,
                     errMsg: '',
                     errModal: false,
                 })
@@ -103,7 +105,10 @@ class Dashboard extends Component {
                                 <AverageThemeRadar userID={this.state.id} />
                             </div>
                             <div className="column-inner">
-                                <GoalTrackerPercentage userID={this.state.id} />
+                                <GoalTrackerPercentage
+                                    userID={this.state.id}
+                                    userScore={this.state.dayScore}
+                                />
                             </div>
                         </div>
                         <div className="statistics__column right">

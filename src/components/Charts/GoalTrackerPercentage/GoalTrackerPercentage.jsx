@@ -1,84 +1,77 @@
 import { Component } from 'react'
-import { RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts'
+
+import './GoalTrackerPercentage.scss'
+import Services from '../../../services/Services'
 
 class GoalTrackerPercentage extends Component {
-    render() {
-        const data = [
-            {
-                name: '18-24',
-                uv: 31.47,
-                pv: 2400,
-                fill: '#8884d8',
-            },
-            {
-                name: '25-29',
-                uv: 26.69,
-                pv: 4567,
-                fill: '#83a6ed',
-            },
-            {
-                name: '30-34',
-                uv: 15.69,
-                pv: 1398,
-                fill: '#8dd1e1',
-            },
-            {
-                name: '35-39',
-                uv: 8.22,
-                pv: 9800,
-                fill: '#82ca9d',
-            },
-            {
-                name: '40-49',
-                uv: 8.63,
-                pv: 3908,
-                fill: '#a4de6c',
-            },
-            {
-                name: '50+',
-                uv: 2.63,
-                pv: 4800,
-                fill: '#d0ed57',
-            },
-            {
-                name: 'unknow',
-                uv: 6.67,
-                pv: 4800,
-                fill: '#ffc658',
-            },
-        ]
-        const style = {
-            top: '50%',
-            right: 0,
-            transform: 'translate(0, -50%)',
-            lineHeight: '24px',
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            id: this.props.userID,
+            errModal: false,
+            userScoreData: [{ subject: '', value: 0 }],
+            userScorePercentage: 0,
         }
 
+        // Axios fetching service
+        this.services = new Services()
+    }
+
+    componentDidMount() {
+        this.services
+            .getUserProfile(this.state.id)
+            .then((r) => {
+                let userScoreData = [
+                    { name: 'userScore', value: r.data.data.score, fillColor: '#ff0000' },
+                    { name: 'rest', value: 1 - r.data.data.score, fillColor: 'transparent' },
+                ]
+                this.setState({
+                    userScoreData: userScoreData,
+                    userScorePercentage: r.data.data.score * 100,
+                })
+            })
+            .catch((err) => {
+                this.setState({
+                    errMsg: 'Erreur de chargement des données utilisateurs: ' + err,
+                    errModal: true,
+                })
+            })
+    }
+
+    render() {
+        const data = [{ name: 'Group A', value: 400 }]
+        const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
+
         return (
-            <ResponsiveContainer width="100%" height="100%">
-                <RadialBarChart
-                    cx="50%"
-                    cy="50%"
-                    innerRadius="10%"
-                    outerRadius="80%"
-                    barSize={10}
-                    data={data}
-                >
-                    <RadialBar
-                        minAngle={15}
-                        label={{ position: 'insideStart', fill: '#fff' }}
-                        background
-                        clockWise
-                        dataKey="uv"
-                    />
-                    <Legend
-                        iconSize={10}
-                        layout="vertical"
-                        verticalAlign="middle"
-                        wrapperStyle={style}
-                    />
-                </RadialBarChart>
-            </ResponsiveContainer>
+            <div className="goalTrackerPercentage-chart">
+                <div className="title">Score</div>
+                <ResponsiveContainer width="99%" height="100%">
+                    <PieChart width={250} height={180}>
+                        <Pie
+                            data={this.state.userScoreData}
+                            dataKey="value"
+                            innerRadius={65}
+                            outerRadius={80}
+                            startAngle={90}
+                            endAngle={450}
+                        >
+                            {this.state.userScoreData.map((data, index) => (
+                                <Cell
+                                    key={`cell-${index}`}
+                                    fill={data.fillColor}
+                                    cornerRadius="50%"
+                                />
+                            ))}
+                        </Pie>
+                    </PieChart>
+                </ResponsiveContainer>
+                <div className="goal">
+                    <div className="goal__percentage">{this.state.userScorePercentage}% </div>
+                    <div className="goal__text">de votre objectif</div>
+                </div>
+            </div>
         )
     }
 }
