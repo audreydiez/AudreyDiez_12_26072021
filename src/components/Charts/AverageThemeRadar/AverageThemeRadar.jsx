@@ -71,7 +71,6 @@ class AverageThemeRadar extends Component {
                         />
 
                         <Radar
-                            name="Mike"
                             dataKey="value"
                             fill="#ff0101"
                             fillOpacity={0.7}

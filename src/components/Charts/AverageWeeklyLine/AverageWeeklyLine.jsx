@@ -1,4 +1,5 @@
 import { Component } from 'react'
+
 import './AverageWeeklyLine.scss'
 
 import {
@@ -12,7 +13,7 @@ import {
     Line,
 } from 'recharts'
 import Services from '../../../services/Services'
-import CustomTooltipLine from '../CustomTooltipLine/CustomTooltipLine'
+import CustomTooltipLine from '../CustomTooltips/CustomTooltipLine/CustomTooltipLine'
 
 class AverageWeeklyLine extends Component {
     constructor(props) {
@@ -92,7 +93,7 @@ class AverageWeeklyLine extends Component {
     render() {
         return (
             <div className="line-chart">
-                <div className="average-sessions-chart-legend">Durée moyenne des sessions</div>
+                <div className="average-sessions-chart-legend">{this.props.contentData.title}</div>
                 <ResponsiveContainer width="99%" height={250}>
                     <LineChart
                         data={this.state.userAverageSession}

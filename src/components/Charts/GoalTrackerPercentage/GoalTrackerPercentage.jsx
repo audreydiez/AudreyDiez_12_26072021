@@ -41,12 +41,9 @@ class GoalTrackerPercentage extends Component {
     }
 
     render() {
-        const data = [{ name: 'Group A', value: 400 }]
-        const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
-
         return (
             <div className="goalTrackerPercentage-chart">
-                <div className="title">Score</div>
+                <div className="title">{this.props.contentData.title}</div>
                 <ResponsiveContainer width="99%" height="100%">
                     <PieChart width={250} height={180}>
                         <Pie
@@ -69,7 +66,7 @@ class GoalTrackerPercentage extends Component {
                 </ResponsiveContainer>
                 <div className="goal">
                     <div className="goal__percentage">{this.state.userScorePercentage}% </div>
-                    <div className="goal__text">de votre objectif</div>
+                    <div className="goal__text">{this.props.contentData.goal}</div>
                 </div>
             </div>
         )

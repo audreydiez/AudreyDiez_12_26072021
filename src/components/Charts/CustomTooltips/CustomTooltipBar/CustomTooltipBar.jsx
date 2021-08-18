@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './CustomTooltip.scss'
+import './CustomTooltipBar.scss'
 
-class CustomTooltip extends Component {
+class CustomTooltipBar extends Component {
     render() {
         const { payload, active } = this.props
 
@@ -18,4 +18,4 @@ class CustomTooltip extends Component {
     }
 }
 
-export default CustomTooltip
+export default CustomTooltipBar

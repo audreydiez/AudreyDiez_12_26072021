@@ -12,7 +12,7 @@ import {
     ResponsiveContainer,
 } from 'recharts'
 import Services from '../../../services/Services'
-import CustomTooltip from '../CustomTooltip/CustomTooltip'
+import CustomTooltipBar from '../CustomTooltips/CustomTooltipBar/CustomTooltipBar'
 
 class DailyTrackerBar extends Component {
     constructor(props) {
@@ -63,15 +63,15 @@ class DailyTrackerBar extends Component {
         return (
             <>
                 <div className="activity-chart-legend">
-                    <h2 className="chart-title">Activité quotidienne</h2>
+                    <h2 className="chart-title">{this.props.contentData.title}</h2>
                     <div className="charts-legend">
                         <div className="legend">
                             <span className="bullet bullet__black" />
-                            Poids (kg)
+                            {this.props.contentData.weight}
                         </div>
                         <div className="legend">
                             <span className="bullet bullet__red" />
-                            Calories brûlées (kCal)
+                            {this.props.contentData.CaloriesBurned}
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ class DailyTrackerBar extends Component {
                             hide={true}
                             domain={[this.state.minValueYaxisKcal, this.state.maxValueYaxisKcal]}
                         />
-                        <Tooltip content={<CustomTooltip />} cursor={{ fill: '#e0e0e0' }} />
+                        <Tooltip content={<CustomTooltipBar />} cursor={{ fill: '#e0e0e0' }} />
 
                         <Bar
                             yAxisId="kg"

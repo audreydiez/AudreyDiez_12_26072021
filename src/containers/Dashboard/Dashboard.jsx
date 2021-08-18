@@ -21,6 +21,7 @@ class Dashboard extends Component {
             sideNav: this.props.data.mainNav.sideNav,
             welcomeContent: this.props.data.welcome,
             macroTrackerContent: this.props.data.macroNutriments,
+            chartsContent: this.props.data.charts,
             iconsToggled: false,
             key: 0,
             id: 18,
@@ -96,10 +97,16 @@ class Dashboard extends Component {
                     <div className="statistics">
                         <div className="statistics__column left">
                             <div className="column-inner">
-                                <DailyTrackerBar userID={this.state.id} />
+                                <DailyTrackerBar
+                                    userID={this.state.id}
+                                    contentData={this.state.chartsContent.DailyTrackerBar}
+                                />
                             </div>
                             <div className="column-inner">
-                                <AverageWeeklyLine userID={this.state.id} />
+                                <AverageWeeklyLine
+                                    userID={this.state.id}
+                                    contentData={this.state.chartsContent.AverageWeeklyWorkoutLine}
+                                />
                             </div>
                             <div className="column-inner">
                                 <AverageThemeRadar userID={this.state.id} />
@@ -108,6 +115,7 @@ class Dashboard extends Component {
                                 <GoalTrackerPercentage
                                     userID={this.state.id}
                                     userScore={this.state.dayScore}
+                                    contentData={this.state.chartsContent.GoalTrackerPercentage}
                                 />
                             </div>
                         </div>
