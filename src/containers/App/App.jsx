@@ -60,10 +60,20 @@ class App extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/dashboard">
-                        {this.displayModalError()}
-                        <Dashboard data={this.state.websiteContent} key={this.state.key} />
-                    </Route>
+                    <Route
+                        exact
+                        path="/:id"
+                        render={({ match }) => (
+                            <>
+                                {this.displayModalError()}
+                                <Dashboard
+                                    data={this.state.websiteContent}
+                                    key={this.state.key}
+                                    id={match.params.id}
+                                />
+                            </>
+                        )}
+                    />
                     <Route path="*">
                         <ErrorPage />
                     </Route>

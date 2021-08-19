@@ -11,6 +11,8 @@ import MacroTracker from 'components/Charts/MacroTracker/MacroTracker'
 import Welcome from '../../components/Welcome/Welcome'
 
 import Services_01 from '../../Services/Services_01'
+import Services from '../../Services/Services'
+import websiteContentDefault from '../../assets/data/content_default.json'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -20,35 +22,34 @@ class Dashboard extends Component {
             websiteContent: this.props.data,
             iconsToggled: false,
             key: 0,
-            id: 18,
-            firstName: null,
-            keyData: '',
-            dayScore: 0,
 
-            isLoading: false,
+            userScore: 0,
+
+            userID: this.props.id,
+            firstName: '',
+            macroNutriments: [],
+            errModal: false,
+            loading: true,
         }
 
-        // Axios fetching service old
-        this.Services_01 = new Services_01()
+        this.services = new Services()
+
+        this.updateUserData = this.updateUserData.bind(this)
     }
 
     componentDidMount() {
-        this.Services_01.getUserProfile(this.state.id)
-            .then((r) => {
-                this.setState({
-                    firstName: r.data.data.userInfos.firstName,
-                    keyData: r.data.data.keyData,
-                    dayScore: r.data.data.score,
-                    errMsg: '',
-                    errModal: false,
-                })
-            })
-            .catch((err) => {
-                this.setState({
-                    errMsg: 'Erreur de chargement des données utilisateurs: ' + err,
-                    errModal: true,
-                })
-            })
+        this.services.getUserDetails(this.state.userID, this.updateUserData)
+    }
+
+    updateUserData(data) {
+        this.setState({
+            firstName: data.fail ? this.state.firstName : data.content.firstName,
+            macroNutriments: data.fail ? this.state.macroNutriments : data.content.macroNutriments,
+            userScore: data.fail ? this.state.userScore : data.content.userScore,
+            loading: data.loading,
+            errModal: data.fail,
+            key: this.state.key + 1,
+        })
     }
 
     // Allow display menu icons on middle devices screens with burger menu
@@ -70,6 +71,7 @@ class Dashboard extends Component {
                     key={this.state.key}
                 />
                 <main className="main">
+                    {this.state.userID}
                     <Welcome
                         userData={this.state.firstName}
                         contentData={this.state.websiteContent.welcome}
@@ -78,25 +80,31 @@ class Dashboard extends Component {
                         <div className="statistics__column left">
                             <div className="column-inner">
                                 <DailyTrackerBar
-                                    userID={this.state.id}
+                                    key={this.state.key}
+                                    userID={this.state.userID}
                                     contentData={this.state.websiteContent.charts.DailyTrackerBar}
                                 />
                             </div>
                             <div className="column-inner">
                                 <AverageWeeklyLine
-                                    userID={this.state.id}
+                                    key={this.state.key}
+                                    userID={this.state.userID}
                                     contentData={
                                         this.state.websiteContent.charts.AverageWeeklyWorkoutLine
                                     }
                                 />
                             </div>
                             <div className="column-inner">
-                                <AverageThemeRadar userID={this.state.id} />
+                                <AverageThemeRadar
+                                    key={this.state.key}
+                                    userID={this.state.userID}
+                                />
                             </div>
                             <div className="column-inner">
                                 <GoalTrackerPercentage
-                                    userID={this.state.id}
-                                    userScore={this.state.dayScore}
+                                    key={this.state.key}
+                                    userID={this.state.userID}
+                                    userScore={this.state.userScore}
                                     contentData={
                                         this.state.websiteContent.charts.GoalTrackerPercentage
                                     }
@@ -106,7 +114,7 @@ class Dashboard extends Component {
                         <div className="statistics__column right">
                             <MacroTracker
                                 contentData={this.state.websiteContent.macroNutriments}
-                                userData={this.state.keyData}
+                                userData={this.state.macroNutriments}
                             />
                         </div>
                     </div>
