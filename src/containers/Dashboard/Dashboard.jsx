@@ -12,8 +12,6 @@ import Welcome from '../../components/Welcome/Welcome'
 
 import Services_01 from '../../Services/Services_01'
 
-import Services from '../../Services/Services'
-
 class Dashboard extends Component {
     constructor(props) {
         super(props)

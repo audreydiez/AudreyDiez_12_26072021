@@ -1,16 +1,13 @@
 import './App.scss'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import Home from './../Home/Home'
 import ErrorPage from 'components/ErrorPage/ErrorPage'
 import { Component } from 'react/cjs/react.production.min'
 import Dashboard from 'containers/Dashboard/Dashboard'
 
-import websiteContent from './../../assets/data/content.json'
 import websiteContentDefault from './../../assets/data/content_default.json'
 
 import Services from '../../Services/Services'
-import Services_01 from '../../Services/Services_01'
 
 class App extends Component {
     constructor(props) {

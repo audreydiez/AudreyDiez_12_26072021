@@ -5,7 +5,7 @@ export default class Services {
     getContentData(updateStateData) {
         const data = []
         axios
-            .get('data/content2.json')
+            .get('data/contentFR.json')
             .then(function (response) {
                 const userDetails = new ContentData()
                 data.content = userDetails.getContentData(response)
@@ -16,6 +16,7 @@ export default class Services {
             })
             .finally(function () {
                 data.loading = false
+                // Update component with the new data
                 updateStateData(data)
             })
     }
