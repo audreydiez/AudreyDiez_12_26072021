@@ -13,6 +13,7 @@ class MainNavigation extends Component {
         }
     }
     getNavLinks = () => {
+        //console.log(this.props.data)
         return this.props.data.map((link, index) => (
             <li key={index} className="main-nav__links">
                 <Link to="/dashboard" title={link}>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default class Services {
+export default class Services_01 {
     async getUserProfile(userID) {
         return await axios.get('http://localhost:8000/user/' + userID, {})
     }

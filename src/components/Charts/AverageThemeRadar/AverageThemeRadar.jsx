@@ -8,7 +8,7 @@ import {
     PolarRadiusAxis,
     ResponsiveContainer,
 } from 'recharts'
-import Services from '../../../services/Services'
+import Services_01 from '../../../Services/Services_01'
 
 class AverageThemeRadar extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class AverageThemeRadar extends Component {
         }
 
         // Axios fetching service
-        this.services = new Services()
+        this.services = new Services_01()
     }
 
     componentDidMount() {

@@ -7,12 +7,11 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend,
     ResponsiveContainer,
     LineChart,
     Line,
 } from 'recharts'
-import Services from '../../../services/Services'
+import Services_01 from '../../../Services/Services_01'
 import CustomTooltipLine from '../CustomTooltips/CustomTooltipLine/CustomTooltipLine'
 
 class AverageWeeklyLine extends Component {
@@ -28,7 +27,7 @@ class AverageWeeklyLine extends Component {
         }
 
         // Axios fetching service
-        this.services = new Services()
+        this.services = new Services_01()
     }
 
     componentDidMount() {

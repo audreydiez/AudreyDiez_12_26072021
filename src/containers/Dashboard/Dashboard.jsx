@@ -10,34 +10,32 @@ import GoalTrackerPercentage from 'components/Charts/GoalTrackerPercentage/GoalT
 import MacroTracker from 'components/Charts/MacroTracker/MacroTracker'
 import Welcome from '../../components/Welcome/Welcome'
 
-import Services from '../../services/Services'
+import Services_01 from '../../Services/Services_01'
+
+import Services from '../../Services/Services'
 
 class Dashboard extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            navLinks: this.props.data.mainNav.navLinks,
-            sideNav: this.props.data.mainNav.sideNav,
-            welcomeContent: this.props.data.welcome,
-            macroTrackerContent: this.props.data.macroNutriments,
-            chartsContent: this.props.data.charts,
+            websiteContent: this.props.data,
             iconsToggled: false,
             key: 0,
             id: 18,
             firstName: null,
             keyData: '',
             dayScore: 0,
-            msg: 'Chargement en cours',
+
+            isLoading: false,
         }
 
-        // Axios fetching service
-        this.services = new Services()
+        // Axios fetching service old
+        this.Services_01 = new Services_01()
     }
 
     componentDidMount() {
-        this.services
-            .getUserProfile(this.state.id)
+        this.Services_01.getUserProfile(this.state.id)
             .then((r) => {
                 this.setState({
                     firstName: r.data.data.userInfos.firstName,
@@ -61,51 +59,37 @@ class Dashboard extends Component {
         this.setState({ iconsToggled: !this.state.iconsToggled, key: newKey })
     }
 
-    displayModalError = () => {
-        return (
-            <div className={`overlay-error ${this.state.errModal ? 'active' : ''}`}>
-                <div className="overlay-error__modal">
-                    <span>{this.state.errMsg}</span>
-                    <button onClick={this.closeModalError}>Fermer</button>
-                </div>
-            </div>
-        )
-    }
-
-    closeModalError = () => {
-        this.setState({ errModal: false })
-    }
-
     render() {
         return (
             <div className="wrapper">
-                {this.displayModalError()}
                 <MainNavigation
-                    data={this.state.navLinks}
+                    data={this.state.websiteContent.navLinks}
                     toggleResponsiveIcons={this.toggleResponsiveIcons}
                 />
                 <SideNavigation
-                    data={this.state.sideNav}
+                    data={this.state.websiteContent.sideNav}
                     iconsToggled={this.state.iconsToggled}
                     key={this.state.key}
                 />
                 <main className="main">
                     <Welcome
                         userData={this.state.firstName}
-                        contentData={this.state.welcomeContent}
+                        contentData={this.state.websiteContent.welcome}
                     />
                     <div className="statistics">
                         <div className="statistics__column left">
                             <div className="column-inner">
                                 <DailyTrackerBar
                                     userID={this.state.id}
-                                    contentData={this.state.chartsContent.DailyTrackerBar}
+                                    contentData={this.state.websiteContent.charts.DailyTrackerBar}
                                 />
                             </div>
                             <div className="column-inner">
                                 <AverageWeeklyLine
                                     userID={this.state.id}
-                                    contentData={this.state.chartsContent.AverageWeeklyWorkoutLine}
+                                    contentData={
+                                        this.state.websiteContent.charts.AverageWeeklyWorkoutLine
+                                    }
                                 />
                             </div>
                             <div className="column-inner">
@@ -115,13 +99,15 @@ class Dashboard extends Component {
                                 <GoalTrackerPercentage
                                     userID={this.state.id}
                                     userScore={this.state.dayScore}
-                                    contentData={this.state.chartsContent.GoalTrackerPercentage}
+                                    contentData={
+                                        this.state.websiteContent.charts.GoalTrackerPercentage
+                                    }
                                 />
                             </div>
                         </div>
                         <div className="statistics__column right">
                             <MacroTracker
-                                contentData={this.state.macroTrackerContent}
+                                contentData={this.state.websiteContent.macroNutriments}
                                 userData={this.state.keyData}
                             />
                         </div>

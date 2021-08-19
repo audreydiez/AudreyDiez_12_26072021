@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts'
 
 import './GoalTrackerPercentage.scss'
-import Services from '../../../services/Services'
+import Services_01 from '../../../Services/Services_01'
 
 class GoalTrackerPercentage extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class GoalTrackerPercentage extends Component {
         }
 
         // Axios fetching service
-        this.services = new Services()
+        this.services = new Services_01()
     }
 
     componentDidMount() {
