@@ -7,7 +7,7 @@ import Dashboard from 'containers/Dashboard/Dashboard'
 
 import websiteContentDefault from './../../assets/data/content_default.json'
 
-import Services from '../../Services/Services'
+import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
 
 class App extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class App extends Component {
         }
 
         // Axios fetching service
-        this.services = new Services()
+        this.services = new AxiosAPIProvider()
 
         this.updateContentData = this.updateContentData.bind(this)
     }

@@ -18,7 +18,8 @@ export default class UserAverageSession {
             ),
         }
     }
-
+    // Faire tableau et map
+    // Utils/ classe date
     getDay(data) {
         let value = ''
         switch (data) {

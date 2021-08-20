@@ -3,8 +3,9 @@ import ContentData from './ContentData'
 import UserDetails from './UserDetails'
 import UserActivity from './UserActivity'
 import UserAverageSession from './UserAverageSession'
+import UserPerformance from './UserPerformance'
 
-export default class Services {
+export default class AxiosAPIProvider {
     getContentData(updateStateData) {
         const data = []
         axios
@@ -49,8 +50,7 @@ export default class Services {
         axios
             .get('http://localhost:8000/user/' + userID + '/activity')
             .then(function (response) {
-                const userActivity = new UserActivity()
-                data.content = userActivity.getUserActivity(response)
+                data.content = UserActivity.getFromResponse(response)
             })
             .catch(function (error) {
                 data.errorMsg = error.message
@@ -71,6 +71,25 @@ export default class Services {
             .then(function (response) {
                 const userAverageSession = new UserAverageSession()
                 data.content = userAverageSession.getUserAverageSession(response)
+            })
+            .catch(function (error) {
+                data.errorMsg = error.message
+                data.fail = true
+            })
+            .finally(function () {
+                data.loading = false
+                // Update component with the new data
+                updateStateData(data)
+            })
+    }
+    getUserPerformance(userID, updateStateData) {
+        const data = []
+
+        axios
+            .get('http://localhost:8000/user/' + userID + '/performance')
+            .then(function (response) {
+                const userPerformance = new UserPerformance()
+                data.content = userPerformance.getFromResponse(response)
             })
             .catch(function (error) {
                 data.errorMsg = error.message

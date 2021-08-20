@@ -12,7 +12,7 @@ import {
     Line,
 } from 'recharts'
 import CustomTooltipLine from '../CustomTooltips/CustomTooltipLine/CustomTooltipLine'
-import Services from '../../../Services/Services'
+import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
 
 class AverageWeeklyLine extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class AverageWeeklyLine extends Component {
             maxValueYaxis: 0,
         }
 
-        this.services = new Services()
+        this.services = new AxiosAPIProvider()
 
         this.updateUserData = this.updateUserData.bind(this)
     }
@@ -37,7 +37,6 @@ class AverageWeeklyLine extends Component {
     }
 
     updateUserData(data) {
-        console.log(data)
         this.setState({
             userAverageSession: data.fail
                 ? this.state.userAverageSession

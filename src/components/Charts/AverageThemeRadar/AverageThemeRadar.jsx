@@ -1,52 +1,35 @@
 import { Component } from 'react'
 import './AverageThemeRadar.scss'
-import {
-    Radar,
-    RadarChart,
-    PolarGrid,
-    PolarAngleAxis,
-    PolarRadiusAxis,
-    ResponsiveContainer,
-} from 'recharts'
-import Services_01 from '../../../Services/Services_01'
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts'
+import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
 
 class AverageThemeRadar extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: this.props.userID,
+            userID: this.props.userID,
             errModal: false,
             userAverageThemeData: [{ subject: '', value: 0 }],
         }
 
-        // Axios fetching service
-        this.services = new Services_01()
+        this.services = new AxiosAPIProvider()
+
+        this.updateUserData = this.updateUserData.bind(this)
     }
 
     componentDidMount() {
-        this.services
-            .getUserPerformance(this.state.id)
-            .then((r) => {
-                let userAverageThemeData = []
-                r.data.data.data.map((data, index) => {
-                    userAverageThemeData.push({
-                        subject:
-                            r.data.data.kind[index + 1].charAt(0).toUpperCase() +
-                            r.data.data.kind[index + 1].slice(1),
-                        value: data.value,
-                    })
-                })
+        this.services.getUserPerformance(this.state.userID, this.updateUserData)
+    }
 
-                this.setState({
-                    userAverageThemeData: userAverageThemeData,
-                })
-            })
-            .catch((err) => {
-                this.setState({
-                    errModal: true,
-                })
-            })
+    updateUserData(data) {
+        console.log(data)
+        this.setState({
+            userAverageThemeData: data.fail ? this.state.userAverageThemeData : data.content,
+
+            loading: data.loading,
+            errModal: data.fail,
+        })
     }
 
     render() {

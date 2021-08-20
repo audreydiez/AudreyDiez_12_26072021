@@ -10,7 +10,7 @@ import GoalTrackerPercentage from 'components/Charts/GoalTrackerPercentage/GoalT
 import MacroTracker from 'components/Charts/MacroTracker/MacroTracker'
 import Welcome from '../../components/Welcome/Welcome'
 
-import Services from '../../Services/Services'
+import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -29,12 +29,13 @@ class Dashboard extends Component {
             loading: true,
         }
 
-        this.services = new Services()
+        this.services = new AxiosAPIProvider()
 
         this.updateUserData = this.updateUserData.bind(this)
     }
 
     componentDidMount() {
+        //await . then
         this.services.getUserDetails(this.state.userID, this.updateUserData)
     }
 

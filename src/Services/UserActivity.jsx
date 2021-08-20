@@ -1,5 +1,7 @@
 export default class UserActivity {
-    getUserActivity(fetchedData) {
+    constructor(response) {}
+
+    static getFromResponse(fetchedData) {
         const sessionsData = []
         fetchedData.data.data.sessions.map((session) => {
             sessionsData.push({
