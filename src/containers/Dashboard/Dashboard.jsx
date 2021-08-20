@@ -97,6 +97,7 @@ class Dashboard extends Component {
                                     contentData={
                                         this.state.websiteContent.charts.GoalTrackerPercentage
                                     }
+                                    key={this.state.key}
                                 />
                             </div>
                         </div>

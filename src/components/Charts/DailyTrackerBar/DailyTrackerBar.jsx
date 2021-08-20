@@ -1,16 +1,7 @@
 import { Component } from 'react'
 import './DailyTrackerBar.scss'
 
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer,
-} from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import CustomTooltipBar from '../CustomTooltips/CustomTooltipBar/CustomTooltipBar'
 import Services from '../../../Services/Services'
 
@@ -41,7 +32,6 @@ class DailyTrackerBar extends Component {
     }
 
     updateUserData(data) {
-        console.log(data)
         this.setState({
             userActivity: data.fail ? this.state.userActivity : data.content.userActivity,
             minValueYaxisKg: data.fail ? this.state.minValueYaxisKg : data.content.minValueYaxisKg,

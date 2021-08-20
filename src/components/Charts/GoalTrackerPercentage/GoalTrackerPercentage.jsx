@@ -1,8 +1,7 @@
 import { Component } from 'react'
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 
 import './GoalTrackerPercentage.scss'
-import Services_01 from '../../../Services/Services_01'
 
 class GoalTrackerPercentage extends Component {
     constructor(props) {
@@ -11,33 +10,12 @@ class GoalTrackerPercentage extends Component {
         this.state = {
             id: this.props.userID,
             errModal: false,
-            userScoreData: [{ subject: '', value: 0 }],
-            userScorePercentage: 0,
+            userScoreData: [
+                { name: 'userScore', value: this.props.userScore, fillColor: '#ff0000' },
+                { name: 'rest', value: 1 - this.props.userScore, fillColor: 'transparent' },
+            ],
+            userScorePercentage: this.props.userScore * 100,
         }
-
-        // Axios fetching service
-        this.services = new Services_01()
-    }
-
-    componentDidMount() {
-        this.services
-            .getUserProfile(this.state.id)
-            .then((r) => {
-                let userScoreData = [
-                    { name: 'userScore', value: r.data.data.score, fillColor: '#ff0000' },
-                    { name: 'rest', value: 1 - r.data.data.score, fillColor: 'transparent' },
-                ]
-                this.setState({
-                    userScoreData: userScoreData,
-                    userScorePercentage: r.data.data.score * 100,
-                })
-            })
-            .catch((err) => {
-                this.setState({
-                    errMsg: 'Erreur de chargement des données utilisateurs: ' + err,
-                    errModal: true,
-                })
-            })
     }
 
     render() {
