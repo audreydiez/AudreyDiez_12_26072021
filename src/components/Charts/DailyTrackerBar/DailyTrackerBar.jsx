@@ -11,52 +11,50 @@ import {
     Legend,
     ResponsiveContainer,
 } from 'recharts'
-import Services_01 from '../../../Services/Services_01'
 import CustomTooltipBar from '../CustomTooltips/CustomTooltipBar/CustomTooltipBar'
+import Services from '../../../Services/Services'
 
 class DailyTrackerBar extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: this.props.userID,
-            errModal: false,
+            userID: this.props.userID,
+
             userActivity: [],
             minValueYaxisKg: 0,
             maxValueYaxisKg: 0,
             minValueYaxisKcal: 0,
             maxValueYaxisKcal: 0,
+
+            errModal: false,
+            loading: true,
         }
 
-        // Axios fetching service
-        this.services = new Services_01()
+        this.services = new Services()
+
+        this.updateUserData = this.updateUserData.bind(this)
     }
 
     componentDidMount() {
-        this.services
-            .getUserActivity(this.state.id)
-            .then((r) => {
-                let userActivity = []
-                r.data.data.sessions.map((data) => {
-                    userActivity.push({
-                        day: data.day.slice(-1),
-                        kg: data.kilogram,
-                        kCal: data.calories,
-                    })
-                })
-                this.setState({
-                    userActivity: userActivity,
-                    minValueYaxisKg: Math.min(...userActivity.map(({ kg }) => kg)) - 1,
-                    maxValueYaxisKg: Math.max(...userActivity.map(({ kg }) => kg)) + 1,
-                    minValueYaxisKcal: Math.min(...userActivity.map(({ kCal }) => kCal)) - 50,
-                    maxValueYaxisKcal: Math.max(...userActivity.map(({ kCal }) => kCal)) + 50,
-                })
-            })
-            .catch((err) => {
-                this.setState({
-                    errModal: true,
-                })
-            })
+        this.services.getUserActivity(this.state.userID, this.updateUserData)
+    }
+
+    updateUserData(data) {
+        console.log(data)
+        this.setState({
+            userActivity: data.fail ? this.state.userActivity : data.content.userActivity,
+            minValueYaxisKg: data.fail ? this.state.minValueYaxisKg : data.content.minValueYaxisKg,
+            maxValueYaxisKg: data.fail ? this.state.maxValueYaxisKg : data.content.maxValueYaxisKg,
+            minValueYaxisKcal: data.fail
+                ? this.state.minValueYaxisKcal
+                : data.content.minValueYaxisKcal,
+            maxValueYaxisKcal: data.fail
+                ? this.state.maxValueYaxisKcal
+                : data.content.maxValueYaxisKcal,
+            loading: data.loading,
+            errModal: data.fail,
+        })
     }
 
     render() {

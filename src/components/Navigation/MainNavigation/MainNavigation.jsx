@@ -13,10 +13,9 @@ class MainNavigation extends Component {
         }
     }
     getNavLinks = () => {
-        //console.log(this.props.data)
         return this.props.data.map((link, index) => (
             <li key={index} className="main-nav__links">
-                <Link to="/dashboard" title={link}>
+                <Link to="#" title={link}>
                     {link}
                 </Link>
             </li>
@@ -41,7 +40,7 @@ class MainNavigation extends Component {
             <nav className="navigation">
                 <ul className="logo">
                     <li className="main-nav__links">
-                        <Link to="/" className="main-nav--list--logo">
+                        <Link to="#" className="main-nav--list--logo">
                             <img src={logo} alt="SportSee" className="main-nav-logo" />
                         </Link>
                     </li>

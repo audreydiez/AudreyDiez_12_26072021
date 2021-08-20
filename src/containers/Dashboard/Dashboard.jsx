@@ -10,9 +10,7 @@ import GoalTrackerPercentage from 'components/Charts/GoalTrackerPercentage/GoalT
 import MacroTracker from 'components/Charts/MacroTracker/MacroTracker'
 import Welcome from '../../components/Welcome/Welcome'
 
-import Services_01 from '../../Services/Services_01'
 import Services from '../../Services/Services'
-import websiteContentDefault from '../../assets/data/content_default.json'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -23,11 +21,10 @@ class Dashboard extends Component {
             iconsToggled: false,
             key: 0,
 
-            userScore: 0,
-
             userID: this.props.id,
             firstName: '',
             macroNutriments: [],
+            userScore: 0,
             errModal: false,
             loading: true,
         }
@@ -68,10 +65,8 @@ class Dashboard extends Component {
                 <SideNavigation
                     data={this.state.websiteContent.sideNav}
                     iconsToggled={this.state.iconsToggled}
-                    key={this.state.key}
                 />
                 <main className="main">
-                    {this.state.userID}
                     <Welcome
                         userData={this.state.firstName}
                         contentData={this.state.websiteContent.welcome}
@@ -80,14 +75,12 @@ class Dashboard extends Component {
                         <div className="statistics__column left">
                             <div className="column-inner">
                                 <DailyTrackerBar
-                                    key={this.state.key}
                                     userID={this.state.userID}
                                     contentData={this.state.websiteContent.charts.DailyTrackerBar}
                                 />
                             </div>
                             <div className="column-inner">
                                 <AverageWeeklyLine
-                                    key={this.state.key}
                                     userID={this.state.userID}
                                     contentData={
                                         this.state.websiteContent.charts.AverageWeeklyWorkoutLine
@@ -95,14 +88,10 @@ class Dashboard extends Component {
                                 />
                             </div>
                             <div className="column-inner">
-                                <AverageThemeRadar
-                                    key={this.state.key}
-                                    userID={this.state.userID}
-                                />
+                                <AverageThemeRadar userID={this.state.userID} />
                             </div>
                             <div className="column-inner">
                                 <GoalTrackerPercentage
-                                    key={this.state.key}
                                     userID={this.state.userID}
                                     userScore={this.state.userScore}
                                     contentData={

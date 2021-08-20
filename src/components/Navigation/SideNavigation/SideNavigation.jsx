@@ -20,9 +20,6 @@ class SideNavigation extends Component {
     componentDidMount() {
         window.addEventListener('resize', this.updateDimension)
     }
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.updateDimension)
-    }
 
     updateDimension = () => {
         this.setState({ windowWidth: window.innerWidth })
@@ -49,7 +46,7 @@ class SideNavigation extends Component {
                         <img src={weightIcon} alt={this.props.data.menuIcon.weightLift} />
                     </li>
                 </ul>
-                <Link to="/dashboard" className="side-bar__copyright">
+                <Link to="#" className="side-bar__copyright">
                     {this.props.data.copyrights}
                 </Link>
             </div>

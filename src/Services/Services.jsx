@@ -1,6 +1,7 @@
 import axios from 'axios'
 import ContentData from './ContentData'
 import UserDetails from './UserDetails'
+import UserActivity from './UserActivity'
 
 export default class Services {
     getContentData(updateStateData) {
@@ -29,6 +30,26 @@ export default class Services {
             .then(function (response) {
                 const userDetails = new UserDetails()
                 data.content = userDetails.getUserProfile(response)
+            })
+            .catch(function (error) {
+                data.errorMsg = error.message
+                data.fail = true
+            })
+            .finally(function () {
+                data.loading = false
+                // Update component with the new data
+                updateStateData(data)
+            })
+    }
+
+    getUserActivity(userID, updateStateData) {
+        const data = []
+
+        axios
+            .get('http://localhost:8000/user/' + userID + '/activity')
+            .then(function (response) {
+                const userActivity = new UserActivity()
+                data.content = userActivity.getUserActivity(response)
             })
             .catch(function (error) {
                 data.errorMsg = error.message
