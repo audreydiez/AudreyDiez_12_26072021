@@ -11,8 +11,8 @@ import {
     LineChart,
     Line,
 } from 'recharts'
-import Services_01 from '../../../Services/Services_01'
 import CustomTooltipLine from '../CustomTooltips/CustomTooltipLine/CustomTooltipLine'
+import Services from '../../../Services/Services'
 
 class AverageWeeklyLine extends Component {
     constructor(props) {
@@ -20,73 +20,33 @@ class AverageWeeklyLine extends Component {
 
         this.state = {
             id: this.props.userID,
+            userID: this.props.userID,
             errModal: false,
             userAverageSession: [],
             minValueYaxis: 0,
             maxValueYaxis: 0,
         }
 
-        // Axios fetching service
-        this.services = new Services_01()
+        this.services = new Services()
+
+        this.updateUserData = this.updateUserData.bind(this)
     }
 
     componentDidMount() {
-        this.services
-            .getUserAverageSession(this.state.id)
-            .then((r) => {
-                let userAverageSession = []
-
-                r.data.data.sessions.map((data) => {
-                    userAverageSession.push({
-                        day: this.getXAxis(data.day),
-                        sessionLength: data.sessionLength,
-                    })
-                })
-                this.setState({
-                    userAverageSession: userAverageSession,
-                    minValueYaxis: Math.min(
-                        ...userAverageSession.map(({ sessionLength }) => sessionLength / 1.66),
-                    ),
-                    maxValueYaxis: Math.max(
-                        ...userAverageSession.map(({ sessionLength }) => sessionLength * 1.5),
-                    ),
-                })
-            })
-            .catch((err) => {
-                this.setState({
-                    errModal: true,
-                })
-            })
+        this.services.getUserAverageSession(this.state.userID, this.updateUserData)
     }
 
-    getXAxis = (data) => {
-        let value = ''
-        switch (data) {
-            case 1:
-                value = 'L'
-                break
-            case 2:
-                value = 'M'
-                break
-            case 3:
-                value = 'M'
-                break
-            case 4:
-                value = 'J'
-                break
-            case 5:
-                value = 'V'
-                break
-            case 6:
-                value = 'S'
-                break
-            case 7:
-                value = 'D'
-                break
-            default:
-                value = ''
-        }
-        return value
+    updateUserData(data) {
+        console.log(data)
+        this.setState({
+            userAverageSession: data.fail
+                ? this.state.userAverageSession
+                : data.content.userAverageSession,
+            minValueYaxis: data.fail ? this.state.minValueYaxis : data.content.minValueYaxis,
+            maxValueYaxis: data.fail ? this.state.maxValueYaxis : data.content.maxValueYaxis,
+            loading: data.loading,
+            errModal: data.fail,
+        })
     }
 
     render() {
