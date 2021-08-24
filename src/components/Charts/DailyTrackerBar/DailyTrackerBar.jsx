@@ -4,7 +4,6 @@ import './DailyTrackerBar.scss'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import CustomTooltipBar from '../CustomTooltips/CustomTooltipBar/CustomTooltipBar'
 import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
-import InfoBox from '../../InfoBox/InfoBox'
 import Loader from '../../Loader/Loader'
 
 class DailyTrackerBar extends Component {
@@ -31,26 +30,23 @@ class DailyTrackerBar extends Component {
 
     componentDidMount() {
         this.apiProvider.getUserActivity(this.state.userID).then((response) => {
-            this.setState({
-                userActivity: response.fail
-                    ? this.state.userActivity
-                    : response.content.userActivity,
-                minValueYaxisKg: response.fail
-                    ? this.state.minValueYaxisKg
-                    : response.content.minValueYaxisKg,
-                maxValueYaxisKg: response.fail
-                    ? this.state.maxValueYaxisKg
-                    : response.content.maxValueYaxisKg,
-                minValueYaxisKcal: response.fail
-                    ? this.state.minValueYaxisKcal
-                    : response.content.minValueYaxisKcal,
-                maxValueYaxisKcal: response.fail
-                    ? this.state.maxValueYaxisKcal
-                    : response.content.maxValueYaxisKcal,
-                loading: response.loading,
-                message: response.errorMsg,
-                key: this.state.key + 1,
-            })
+            if (response.fail) {
+                this.setState({
+                    loading: response.loading,
+                    message: response.errorMsg,
+                    key: this.state.key + 1,
+                })
+            } else {
+                this.setState({
+                    userActivity: response.content.userActivity,
+                    minValueYaxisKg: response.content.minValueYaxisKg,
+                    maxValueYaxisKg: response.content.maxValueYaxisKg,
+                    minValueYaxisKcal: response.content.minValueYaxisKcal,
+                    maxValueYaxisKcal: response.content.maxValueYaxisKcal,
+                    loading: response.loading,
+                    key: this.state.key + 1,
+                })
+            }
         })
     }
 
