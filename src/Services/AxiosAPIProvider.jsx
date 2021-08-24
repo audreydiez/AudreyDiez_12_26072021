@@ -56,25 +56,23 @@ export default class AxiosAPIProvider {
         return data
     }
 
-    getUserAverageSession(userID, updateStateData) {
+    async getUserAverageSession(userID) {
         const data = []
 
-        axios
+        await axios
             .get('http://localhost:8000/user/' + userID + '/average-sessions')
             .then(function (response) {
-                const userAverageSession = new UserAverageSession()
-                data.content = userAverageSession.getUserAverageSession(response)
+                data.content = UserAverageSession.getFromResponse(response)
+                data.loading = false
             })
             .catch(function (error) {
                 data.errorMsg = error.message
                 data.fail = true
+                data.loading = true
             })
-            .finally(function () {
-                data.loading = false
-                // Update component with the new data
-                updateStateData(data)
-            })
+        return data
     }
+
     getUserPerformance(userID, updateStateData) {
         const data = []
 

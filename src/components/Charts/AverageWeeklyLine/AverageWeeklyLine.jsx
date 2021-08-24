@@ -13,6 +13,7 @@ import {
 } from 'recharts'
 import CustomTooltipLine from '../CustomTooltips/CustomTooltipLine/CustomTooltipLine'
 import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
+import Loader from '../../Loader/Loader'
 
 class AverageWeeklyLine extends Component {
     constructor(props) {
@@ -28,27 +29,28 @@ class AverageWeeklyLine extends Component {
         }
 
         this.apiProvider = new AxiosAPIProvider()
-
-        this.updateUserData = this.updateUserData.bind(this)
     }
 
-    async componentDidMount() {
-        this.apiProvider.getUserAverageSession(this.state.userID, this.updateUserData)
-    }
-
-    updateUserData(data) {
-        this.setState({
-            userAverageSession: data.fail
-                ? this.state.userAverageSession
-                : data.content.userAverageSession,
-            minValueYaxis: data.fail ? this.state.minValueYaxis : data.content.minValueYaxis,
-            maxValueYaxis: data.fail ? this.state.maxValueYaxis : data.content.maxValueYaxis,
-            loading: data.loading,
-            errModal: data.fail,
+    componentDidMount() {
+        this.apiProvider.getUserAverageSession(this.state.userID).then((response) => {
+            if (response.fail) {
+                this.setState({
+                    loading: response.loading,
+                    message: response.errorMsg,
+                    key: this.state.key + 1,
+                })
+            } else {
+                this.setState({
+                    userAverageSession: response.content.userAverageSession,
+                    minValueYaxis: response.content.minValueYaxis,
+                    maxValueYaxis: response.content.maxValueYaxis,
+                    loading: response.loading,
+                    key: this.state.key + 1,
+                })
+            }
         })
     }
-
-    render() {
+    displayChart() {
         return (
             <div className="line-chart">
                 <div className="average-sessions-chart-legend">{this.props.contentData.title}</div>
@@ -100,6 +102,13 @@ class AverageWeeklyLine extends Component {
                     </LineChart>
                 </ResponsiveContainer>
             </div>
+        )
+    }
+    render() {
+        return this.state.loading ? (
+            <Loader fill="#e60000" message={this.state.message} key={this.state.key} />
+        ) : (
+            this.displayChart()
         )
     }
 }

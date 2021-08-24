@@ -56,6 +56,7 @@
 
                 // Charts 2 to 4 - 33%
                 .column-inner:nth-child(n + 2) {
+                    position: relative;
                     flex-basis: calc(33.3333% - 1.5rem);
                     height: 263px;
                     width: 0;

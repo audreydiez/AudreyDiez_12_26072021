@@ -1,13 +1,16 @@
 export default class UserAverageSession {
-    getUserAverageSession(fetchedData) {
+    constructor(response) {}
+
+    static getFromResponse(fetchedData) {
         const sessionsData = []
+        const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+
         fetchedData.data.data.sessions.map((session) => {
             sessionsData.push({
-                day: this.getDay(session.day),
+                day: days[session.day - 1],
                 sessionLength: session.sessionLength,
             })
         })
-
         return {
             userAverageSession: sessionsData,
             minValueYaxis: Math.min(
@@ -17,36 +20,5 @@ export default class UserAverageSession {
                 ...sessionsData.map(({ sessionLength }) => sessionLength * 1.5),
             ),
         }
-    }
-    // Faire tableau et map
-    // Utils/ classe date
-    getDay(data) {
-        let value = ''
-        switch (data) {
-            case 1:
-                value = 'L'
-                break
-            case 2:
-                value = 'M'
-                break
-            case 3:
-                value = 'M'
-                break
-            case 4:
-                value = 'J'
-                break
-            case 5:
-                value = 'V'
-                break
-            case 6:
-                value = 'S'
-                break
-            case 7:
-                value = 'D'
-                break
-            default:
-                value = ''
-        }
-        return value
     }
 }
