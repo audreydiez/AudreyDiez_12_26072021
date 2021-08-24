@@ -4,6 +4,7 @@ import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
 
 class MacroTracker extends Component {
     render() {
+        console.log(this.props.userData)
         return (
             <>
                 {/*Create all trackers*/}
@@ -14,20 +15,33 @@ class MacroTracker extends Component {
                                 <img src={'images/' + contentData.file} alt={contentData.alt} />
                             </div>
                             <>
-                                {/*Match content value (name) with userData for display macro*/}
-                                {Object.entries(this.props.userData).map(([key, value]) => {
-                                    if (key.toString() === contentData.name.toString()) {
-                                        return (
-                                            <div className="content-container" key={value}>
-                                                <span className="data">
-                                                    {value.toString()}
-                                                    {contentData.value}
-                                                </span>
-                                                <span className="legend">{contentData.alt}</span>
-                                            </div>
-                                        )
-                                    }
-                                })}
+                                {/*// If fetching data failed*/}
+                                {typeof this.props.userData.length === 'undefined' ? (
+                                    <>
+                                        {/*Match content value (name) with userData for display macro*/}
+                                        {Object.entries(this.props.userData).map(([key, value]) => {
+                                            if (key.toString() === contentData.name.toString()) {
+                                                return (
+                                                    <div className="content-container" key={value}>
+                                                        <span className="data">
+                                                            {value.toString()}
+                                                            {contentData.value}
+                                                        </span>
+                                                        <span className="legend">
+                                                            {contentData.alt}
+                                                        </span>
+                                                    </div>
+                                                )
+                                            }
+                                        })}
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="content-container">
+                                            <span className="legend">Pas de données</span>
+                                        </div>
+                                    </>
+                                )}
                             </>
                         </div>
                     </div>
