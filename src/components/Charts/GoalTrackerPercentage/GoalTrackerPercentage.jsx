@@ -2,23 +2,23 @@ import { Component } from 'react'
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 
 import './GoalTrackerPercentage.scss'
+import Loader from '../../Loader/Loader'
 
 class GoalTrackerPercentage extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: this.props.userID,
-            errModal: false,
             userScoreData: [
                 { name: 'userScore', value: this.props.userScore, fillColor: '#ff0000' },
                 { name: 'rest', value: 1 - this.props.userScore, fillColor: 'transparent' },
             ],
             userScorePercentage: this.props.userScore * 100,
+            message: this.props.message,
         }
     }
 
-    render() {
+    displayChart() {
         return (
             <div className="goalTrackerPercentage-chart">
                 <div className="title">{this.props.contentData.title}</div>
@@ -47,6 +47,14 @@ class GoalTrackerPercentage extends Component {
                     <div className="goal__text">{this.props.contentData.goal}</div>
                 </div>
             </div>
+        )
+    }
+
+    render() {
+        return this.props.userScore === null ? (
+            <Loader fill="#e60000" message={this.state.message} />
+        ) : (
+            this.displayChart()
         )
     }
 }

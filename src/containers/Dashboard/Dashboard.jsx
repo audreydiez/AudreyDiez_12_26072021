@@ -25,7 +25,7 @@ class Dashboard extends Component {
             userID: this.props.id,
             firstName: '',
             macroNutriments: [],
-            userScore: 0,
+            userScore: null,
 
             errModal: false,
             loading: true,
@@ -40,10 +40,12 @@ class Dashboard extends Component {
         this.apiProvider.getUserDetails(this.state.userID).then((response) => {
             if (response.fail) {
                 this.setState({
-                    message: response.errorMsg + ' : Erreur de chargement des données utilisateurs',
+                    message:
+                        response.errorMsg + " : Erreur de chargement des détails de l'utilisateur",
                     errModal: response.fail,
                     loading: false,
                     overlay: response.fail,
+
                     key: this.state.key + 1,
                 })
             } else {
@@ -106,6 +108,7 @@ class Dashboard extends Component {
                                     contentData={
                                         this.state.websiteContent.charts.GoalTrackerPercentage
                                     }
+                                    message={this.state.message}
                                     key={this.state.key}
                                 />
                             </div>
@@ -123,15 +126,18 @@ class Dashboard extends Component {
     }
 
     render() {
-        return this.state.overlay ? (
-            <InfoBox
-                loading={this.state.loading}
-                errModal={this.state.errModal}
-                message={this.state.message}
-                key={this.state.key + 1}
-            />
-        ) : (
-            this.displayDashboard()
+        return (
+            <>
+                {this.state.overlay && (
+                    <InfoBox
+                        loading={this.state.loading}
+                        errModal={this.state.errModal}
+                        message={this.state.message}
+                        key={this.state.key + 1}
+                    />
+                )}
+                {this.displayDashboard()}
+            </>
         )
     }
 }

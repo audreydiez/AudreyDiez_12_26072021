@@ -36,6 +36,7 @@ export default class AxiosAPIProvider {
                 data.errorMsg = error.message
                 data.fail = true
             })
+        console.log(data)
         return data
     }
 
