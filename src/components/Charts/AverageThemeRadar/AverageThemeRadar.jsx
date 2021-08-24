@@ -2,6 +2,7 @@ import { Component } from 'react'
 import './AverageThemeRadar.scss'
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts'
 import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
+import Loader from '../../Loader/Loader'
 
 class AverageThemeRadar extends Component {
     constructor(props) {
@@ -9,29 +10,29 @@ class AverageThemeRadar extends Component {
 
         this.state = {
             userID: this.props.userID,
-            errModal: false,
             userAverageThemeData: [{ subject: '', value: 0 }],
         }
 
-        this.services = new AxiosAPIProvider()
-
-        this.updateUserData = this.updateUserData.bind(this)
+        this.apiProvider = new AxiosAPIProvider()
     }
 
     componentDidMount() {
-        this.services.getUserPerformance(this.state.userID, this.updateUserData)
-    }
-
-    updateUserData(data) {
-        this.setState({
-            userAverageThemeData: data.fail ? this.state.userAverageThemeData : data.content,
-
-            loading: data.loading,
-            errModal: data.fail,
+        this.apiProvider.getUserPerformance(this.state.userID).then((response) => {
+            if (response.fail) {
+                this.setState({
+                    loading: response.loading,
+                    message: response.errorMsg,
+                })
+            } else {
+                this.setState({
+                    userAverageThemeData: response.content,
+                    loading: response.loading,
+                })
+            }
         })
     }
 
-    render() {
+    displayChart() {
         return (
             <div className="radar-chart">
                 <ResponsiveContainer width="100%" height="100%">
@@ -61,6 +62,14 @@ class AverageThemeRadar extends Component {
                     </RadarChart>
                 </ResponsiveContainer>
             </div>
+        )
+    }
+
+    render() {
+        return this.state.loading ? (
+            <Loader fill="#e60000" message={this.state.message} key={this.state.key} />
+        ) : (
+            this.displayChart()
         )
     }
 }

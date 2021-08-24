@@ -73,23 +73,20 @@ export default class AxiosAPIProvider {
         return data
     }
 
-    getUserPerformance(userID, updateStateData) {
+    async getUserPerformance(userID) {
         const data = []
 
-        axios
+        await axios
             .get('http://localhost:8000/user/' + userID + '/performance')
             .then(function (response) {
-                const userPerformance = new UserPerformance()
-                data.content = userPerformance.getFromResponse(response)
+                data.content = UserPerformance.getFromResponse(response)
+                data.loading = false
             })
             .catch(function (error) {
                 data.errorMsg = error.message
                 data.fail = true
+                data.loading = true
             })
-            .finally(function () {
-                data.loading = false
-                // Update component with the new data
-                updateStateData(data)
-            })
+        return data
     }
 }
