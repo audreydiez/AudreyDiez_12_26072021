@@ -16,7 +16,7 @@
     "navLinks": ["", "", "", ""],
 
     "welcome": {
-        "title": "No data",
+        "title": "",
         "subTitle": ""
     },
 

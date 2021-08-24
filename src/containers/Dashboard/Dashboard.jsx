@@ -12,6 +12,7 @@ import Welcome from '../../components/Welcome/Welcome'
 
 import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
 import InfoBox from '../../components/InfoBox/InfoBox'
+import Loader from '../../components/Loader/Loader'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -28,6 +29,7 @@ class Dashboard extends Component {
 
             errModal: false,
             loading: true,
+            overlay: false,
             key: 0,
         }
 
@@ -36,18 +38,23 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.apiProvider.getUserDetails(this.state.userID).then((response) => {
-            this.setState({
-                firstName: response.fail ? '' : response.content.firstName,
-                macroNutriments: response.fail ? [] : response.content.macroNutriments,
-                userScore: response.fail ? 0 : response.content.userScore,
-                message: response.fail
-                    ? response.errorMsg + ' : Erreur de chargement des données utilisateurs'
-                    : this.state.message,
-                errModal: response.fail,
-                loading: false,
-                overlay: response.fail,
-                key: this.state.key + 1,
-            })
+            if (response.fail) {
+                this.setState({
+                    message: response.errorMsg + ' : Erreur de chargement des données utilisateurs',
+                    errModal: response.fail,
+                    loading: false,
+                    overlay: response.fail,
+                    key: this.state.key + 1,
+                })
+            } else {
+                this.setState({
+                    firstName: response.content.firstName,
+                    macroNutriments: response.content.macroNutriments,
+                    userScore: response.content.userScore,
+                    loading: false,
+                    key: this.state.key + 1,
+                })
+            }
         })
     }
 
@@ -57,17 +64,9 @@ class Dashboard extends Component {
         this.setState({ iconsToggled: !this.state.iconsToggled, key: newKey })
     }
 
-    render() {
+    displayDashboard() {
         return (
             <div className="wrapper">
-                {this.state.overlay && (
-                    <InfoBox
-                        loading={this.state.loading}
-                        errModal={this.state.errModal}
-                        message={this.state.message}
-                        key={this.state.key + 1}
-                    />
-                )}
                 <MainNavigation
                     data={this.state.websiteContent.navLinks}
                     toggleResponsiveIcons={this.toggleResponsiveIcons}
@@ -120,6 +119,19 @@ class Dashboard extends Component {
                     </div>
                 </main>
             </div>
+        )
+    }
+
+    render() {
+        return this.state.overlay ? (
+            <InfoBox
+                loading={this.state.loading}
+                errModal={this.state.errModal}
+                message={this.state.message}
+                key={this.state.key + 1}
+            />
+        ) : (
+            this.displayDashboard()
         )
     }
 }

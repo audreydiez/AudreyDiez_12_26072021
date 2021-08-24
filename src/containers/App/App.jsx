@@ -8,7 +8,6 @@ import Dashboard from 'containers/Dashboard/Dashboard'
 import websiteContentDefault from './../../assets/data/content_default.json'
 
 import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
-import Loader from '../../components/Loader/Loader'
 import InfoBox from '../../components/InfoBox/InfoBox'
 
 class App extends Component {
@@ -19,7 +18,7 @@ class App extends Component {
             websiteContent: websiteContentDefault,
             loading: true,
             errModal: false,
-            overlay: true,
+            overlay: false,
 
             key: 0,
         }
@@ -30,16 +29,24 @@ class App extends Component {
 
     componentDidMount() {
         this.apiProvider.getContentData().then((response) => {
-            this.setState({
-                websiteContent: response.fail ? websiteContentDefault : response.content,
-                message: response.fail
-                    ? response.errorMsg + ' : Erreur de chargement du site'
-                    : this.state.message,
-                errModal: response.fail,
-                loading: false,
-                overlay: response.fail,
-                key: this.state.key + 1,
-            })
+            this.setState({})
+
+            if (response.fail) {
+                this.setState({
+                    websiteContent: websiteContentDefault,
+                    message: response.errorMsg + ' : Erreur de chargement du site',
+                    errModal: response.fail,
+                    loading: false,
+                    overlay: response.fail,
+                    key: this.state.key + 1,
+                })
+            } else {
+                this.setState({
+                    websiteContent: response.content,
+                    loading: false,
+                    key: this.state.key + 1,
+                })
+            }
         })
     }
 
@@ -52,21 +59,21 @@ class App extends Component {
                         path="/:id"
                         render={({ match }) => (
                             <>
-                                {this.state.overlay && (
+                                {this.state.overlay ? (
                                     <InfoBox
                                         loading={this.state.loading}
                                         errModal={this.state.errModal}
                                         message={this.state.message}
                                         key={this.state.key + 1}
                                     />
+                                ) : (
+                                    <Dashboard
+                                        data={this.state.websiteContent}
+                                        key={this.state.key}
+                                        id={match.params.id}
+                                        displayInfoBox={this.displayInfoBox}
+                                    />
                                 )}
-
-                                <Dashboard
-                                    data={this.state.websiteContent}
-                                    key={this.state.key}
-                                    id={match.params.id}
-                                    displayInfoBox={this.displayInfoBox}
-                                />
                             </>
                         )}
                     />
