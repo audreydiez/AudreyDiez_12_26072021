@@ -1,5 +1,7 @@
 export default class UserDetails {
-    getUserProfile(fetchedData) {
+    constructor(response) {}
+
+    static getFromResponse(fetchedData) {
         return {
             firstName: fetchedData.data.data.userInfos.firstName,
             macroNutriments: fetchedData.data.data.keyData,

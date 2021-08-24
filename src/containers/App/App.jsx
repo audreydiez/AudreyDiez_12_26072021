@@ -9,6 +9,7 @@ import websiteContentDefault from './../../assets/data/content_default.json'
 
 import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
 import Loader from '../../components/Loader/Loader'
+import InfoBox from '../../components/InfoBox/InfoBox'
 
 class App extends Component {
     constructor(props) {
@@ -29,36 +30,17 @@ class App extends Component {
 
     componentDidMount() {
         this.apiProvider.getContentData().then((response) => {
-            console.log(response)
             this.setState({
                 websiteContent: response.fail ? websiteContentDefault : response.content,
-                message: response.fail ? response.errorMsg : this.state.message,
+                message: response.fail
+                    ? response.errorMsg + ' : Erreur de chargement du site'
+                    : this.state.message,
                 errModal: response.fail,
                 loading: false,
                 overlay: response.fail,
                 key: this.state.key + 1,
             })
         })
-    }
-
-    displayInfoBox = () => {
-        return (
-            // Overlay - If loading => loader, if Error fetching => ErrModal
-            <div className={`overlay ${this.state.overlay ? 'active' : ''}`}>
-                {this.state.loading && <Loader />}
-
-                {this.state.errModal && (
-                    <div className="overlay__modal">
-                        <span>{this.state.message}</span>
-                        <button onClick={this.closeInfoBox}>Fermer</button>
-                    </div>
-                )}
-            </div>
-        )
-    }
-
-    closeInfoBox = () => {
-        this.setState({ errModal: false, loading: false })
     }
 
     render() {
@@ -70,7 +52,15 @@ class App extends Component {
                         path="/:id"
                         render={({ match }) => (
                             <>
-                                {this.displayInfoBox()}
+                                {this.state.overlay && (
+                                    <InfoBox
+                                        loading={this.state.loading}
+                                        errModal={this.state.errModal}
+                                        message={this.state.message}
+                                        key={this.state.key + 1}
+                                    />
+                                )}
+
                                 <Dashboard
                                     data={this.state.websiteContent}
                                     key={this.state.key}

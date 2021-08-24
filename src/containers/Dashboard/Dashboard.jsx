@@ -11,7 +11,7 @@ import MacroTracker from 'components/Charts/MacroTracker/MacroTracker'
 import Welcome from '../../components/Welcome/Welcome'
 
 import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
-import Loader from '../../components/Loader/Loader'
+import InfoBox from '../../components/InfoBox/InfoBox'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -20,34 +20,34 @@ class Dashboard extends Component {
         this.state = {
             websiteContent: this.props.data,
             iconsToggled: false,
-            key: 0,
 
             userID: this.props.id,
             firstName: '',
             macroNutriments: [],
             userScore: 0,
+
             errModal: false,
             loading: true,
+            key: 0,
         }
 
-        this.services = new AxiosAPIProvider()
-
-        this.updateUserData = this.updateUserData.bind(this)
+        this.apiProvider = new AxiosAPIProvider()
     }
 
     componentDidMount() {
-        //await . then
-        this.services.getUserDetails(this.state.userID, this.updateUserData)
-    }
-
-    updateUserData(data) {
-        this.setState({
-            firstName: data.fail ? this.state.firstName : data.content.firstName,
-            macroNutriments: data.fail ? this.state.macroNutriments : data.content.macroNutriments,
-            userScore: data.fail ? this.state.userScore : data.content.userScore,
-            loading: data.loading,
-            errModal: data.fail,
-            key: this.state.key + 1,
+        this.apiProvider.getUserDetails(this.state.userID).then((response) => {
+            this.setState({
+                firstName: response.fail ? '' : response.content.firstName,
+                macroNutriments: response.fail ? [] : response.content.macroNutriments,
+                userScore: response.fail ? 0 : response.content.userScore,
+                message: response.fail
+                    ? response.errorMsg + ' : Erreur de chargement des données utilisateurs'
+                    : this.state.message,
+                errModal: response.fail,
+                loading: false,
+                overlay: response.fail,
+                key: this.state.key + 1,
+            })
         })
     }
 
@@ -60,6 +60,14 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="wrapper">
+                {this.state.overlay && (
+                    <InfoBox
+                        loading={this.state.loading}
+                        errModal={this.state.errModal}
+                        message={this.state.message}
+                        key={this.state.key + 1}
+                    />
+                )}
                 <MainNavigation
                     data={this.state.websiteContent.navLinks}
                     toggleResponsiveIcons={this.toggleResponsiveIcons}

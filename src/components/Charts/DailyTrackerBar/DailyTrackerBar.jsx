@@ -4,6 +4,8 @@ import './DailyTrackerBar.scss'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import CustomTooltipBar from '../CustomTooltips/CustomTooltipBar/CustomTooltipBar'
 import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
+import InfoBox from '../../InfoBox/InfoBox'
+import Loader from '../../Loader/Loader'
 
 class DailyTrackerBar extends Component {
     constructor(props) {
@@ -20,34 +22,39 @@ class DailyTrackerBar extends Component {
 
             errModal: false,
             loading: true,
+
+            key: 0,
         }
 
-        this.services = new AxiosAPIProvider()
-
-        this.updateUserData = this.updateUserData.bind(this)
+        this.apiProvider = new AxiosAPIProvider()
     }
 
     componentDidMount() {
-        this.services.getUserActivity(this.state.userID, this.updateUserData)
-    }
-
-    updateUserData(data) {
-        this.setState({
-            userActivity: data.fail ? this.state.userActivity : data.content.userActivity,
-            minValueYaxisKg: data.fail ? this.state.minValueYaxisKg : data.content.minValueYaxisKg,
-            maxValueYaxisKg: data.fail ? this.state.maxValueYaxisKg : data.content.maxValueYaxisKg,
-            minValueYaxisKcal: data.fail
-                ? this.state.minValueYaxisKcal
-                : data.content.minValueYaxisKcal,
-            maxValueYaxisKcal: data.fail
-                ? this.state.maxValueYaxisKcal
-                : data.content.maxValueYaxisKcal,
-            loading: data.loading,
-            errModal: data.fail,
+        this.apiProvider.getUserActivity(this.state.userID).then((response) => {
+            this.setState({
+                userActivity: response.fail
+                    ? this.state.userActivity
+                    : response.content.userActivity,
+                minValueYaxisKg: response.fail
+                    ? this.state.minValueYaxisKg
+                    : response.content.minValueYaxisKg,
+                maxValueYaxisKg: response.fail
+                    ? this.state.maxValueYaxisKg
+                    : response.content.maxValueYaxisKg,
+                minValueYaxisKcal: response.fail
+                    ? this.state.minValueYaxisKcal
+                    : response.content.minValueYaxisKcal,
+                maxValueYaxisKcal: response.fail
+                    ? this.state.maxValueYaxisKcal
+                    : response.content.maxValueYaxisKcal,
+                loading: response.loading,
+                message: response.errorMsg,
+                key: this.state.key + 1,
+            })
         })
     }
 
-    render() {
+    displayChart() {
         return (
             <>
                 <div className="activity-chart-legend">
@@ -116,6 +123,14 @@ class DailyTrackerBar extends Component {
                     </BarChart>
                 </ResponsiveContainer>
             </>
+        )
+    }
+
+    render() {
+        return this.state.loading ? (
+            <Loader fill="#e60000" message={this.state.message} key={this.state.key} />
+        ) : (
+            this.displayChart()
         )
     }
 }
