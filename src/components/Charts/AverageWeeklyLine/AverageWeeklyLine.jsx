@@ -27,13 +27,13 @@ class AverageWeeklyLine extends Component {
             maxValueYaxis: 0,
         }
 
-        this.services = new AxiosAPIProvider()
+        this.apiProvider = new AxiosAPIProvider()
 
         this.updateUserData = this.updateUserData.bind(this)
     }
 
-    componentDidMount() {
-        this.services.getUserAverageSession(this.state.userID, this.updateUserData)
+    async componentDidMount() {
+        this.apiProvider.getUserAverageSession(this.state.userID, this.updateUserData)
     }
 
     updateUserData(data) {

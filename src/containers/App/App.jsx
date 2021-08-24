@@ -8,6 +8,7 @@ import Dashboard from 'containers/Dashboard/Dashboard'
 import websiteContentDefault from './../../assets/data/content_default.json'
 
 import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
+import Loader from '../../components/Loader/Loader'
 
 class App extends Component {
     constructor(props) {
@@ -16,44 +17,48 @@ class App extends Component {
         this.state = {
             websiteContent: websiteContentDefault,
             loading: true,
-            message: 'Chargement des données',
             errModal: false,
+            overlay: true,
+
             key: 0,
         }
 
         // Axios fetching service
-        this.services = new AxiosAPIProvider()
-
-        this.updateContentData = this.updateContentData.bind(this)
+        this.apiProvider = new AxiosAPIProvider()
     }
 
     componentDidMount() {
-        this.services.getContentData(this.updateContentData)
-    }
-
-    updateContentData(data) {
-        this.setState({
-            websiteContent: data.fail ? websiteContentDefault : data.content,
-            loading: data.loading,
-            message: data.fail ? data.errorMsg : this.state.message,
-            errModal: data.fail,
-            key: this.state.key + 1,
+        this.apiProvider.getContentData().then((response) => {
+            console.log(response)
+            this.setState({
+                websiteContent: response.fail ? websiteContentDefault : response.content,
+                message: response.fail ? response.errorMsg : this.state.message,
+                errModal: response.fail,
+                loading: false,
+                overlay: response.fail,
+                key: this.state.key + 1,
+            })
         })
     }
 
-    displayModalError = () => {
+    displayInfoBox = () => {
         return (
-            <div className={`overlay-error ${this.state.errModal ? 'active' : ''}`}>
-                <div className="overlay-error__modal">
-                    <span>{this.state.message}</span>
-                    <button onClick={this.closeModalError}>Fermer</button>
-                </div>
+            // Overlay - If loading => loader, if Error fetching => ErrModal
+            <div className={`overlay ${this.state.overlay ? 'active' : ''}`}>
+                {this.state.loading && <Loader />}
+
+                {this.state.errModal && (
+                    <div className="overlay__modal">
+                        <span>{this.state.message}</span>
+                        <button onClick={this.closeInfoBox}>Fermer</button>
+                    </div>
+                )}
             </div>
         )
     }
 
-    closeModalError = () => {
-        this.setState({ errModal: false })
+    closeInfoBox = () => {
+        this.setState({ errModal: false, loading: false })
     }
 
     render() {
@@ -65,11 +70,12 @@ class App extends Component {
                         path="/:id"
                         render={({ match }) => (
                             <>
-                                {this.displayModalError()}
+                                {this.displayInfoBox()}
                                 <Dashboard
                                     data={this.state.websiteContent}
                                     key={this.state.key}
                                     id={match.params.id}
+                                    displayInfoBox={this.displayInfoBox}
                                 />
                             </>
                         )}

@@ -11,6 +11,7 @@ import MacroTracker from 'components/Charts/MacroTracker/MacroTracker'
 import Welcome from '../../components/Welcome/Welcome'
 
 import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
+import Loader from '../../components/Loader/Loader'
 
 class Dashboard extends Component {
     constructor(props) {

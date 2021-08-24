@@ -23,7 +23,6 @@ class AverageThemeRadar extends Component {
     }
 
     updateUserData(data) {
-        console.log(data)
         this.setState({
             userAverageThemeData: data.fail ? this.state.userAverageThemeData : data.content,
 

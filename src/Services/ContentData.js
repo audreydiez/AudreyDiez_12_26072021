@@ -1,5 +1,7 @@
 export default class ContentData {
-    getContentData(fetchedData) {
+    constructor(response) {}
+
+    static getFromResponse(fetchedData) {
         return fetchedData.data
     }
 }

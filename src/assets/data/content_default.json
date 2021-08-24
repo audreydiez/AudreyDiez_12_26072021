@@ -13,10 +13,10 @@
         },
         "copyrights": ""
     },
-    "navLinks": [],
+    "navLinks": ["", "", "", ""],
 
     "welcome": {
-        "title": "",
+        "title": "No data",
         "subTitle": ""
     },
 

@@ -6,23 +6,21 @@ import UserAverageSession from './UserAverageSession'
 import UserPerformance from './UserPerformance'
 
 export default class AxiosAPIProvider {
-    getContentData(updateStateData) {
+    async getContentData() {
         const data = []
-        axios
+
+        await axios
             .get('data/contentFR.json')
             .then(function (response) {
-                const userDetails = new ContentData()
-                data.content = userDetails.getContentData(response)
+                data.content = ContentData.getFromResponse(response)
+                data.overlay = false
             })
             .catch(function (error) {
                 data.errorMsg = error.message
                 data.fail = true
             })
-            .finally(function () {
-                data.loading = false
-                // Update component with the new data
-                updateStateData(data)
-            })
+
+        return data
     }
 
     getUserDetails(userID, updateStateData) {
