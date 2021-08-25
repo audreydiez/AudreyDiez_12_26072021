@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './CustomTooltipBar.scss'
+import PropTypes from 'prop-types'
+import AverageWeeklyLine from 'components/Charts/AverageWeeklyLine/AverageWeeklyLine'
 
 class CustomTooltipBar extends Component {
     render() {
@@ -16,6 +18,11 @@ class CustomTooltipBar extends Component {
 
         return null
     }
+}
+
+CustomTooltipBar.propTypes = {
+    payload: PropTypes.array,
+    active: PropTypes.bool,
 }
 
 export default CustomTooltipBar

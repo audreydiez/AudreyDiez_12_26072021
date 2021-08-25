@@ -3,6 +3,7 @@ import './AverageThemeRadar.scss'
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts'
 import AxiosAPIProvider from 'Services/AxiosAPIProvider'
 import Loader from 'components/Loader/Loader'
+import PropTypes from 'prop-types'
 
 class AverageThemeRadar extends Component {
     constructor(props) {
@@ -73,4 +74,9 @@ class AverageThemeRadar extends Component {
         )
     }
 }
+
+AverageThemeRadar.propTypes = {
+    userID: PropTypes.string.isRequired,
+}
+
 export default AverageThemeRadar

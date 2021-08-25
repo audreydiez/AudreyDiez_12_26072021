@@ -3,6 +3,7 @@ import './MainNavigation.scss'
 
 import logo from 'assets/images/logo.svg'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class MainNavigation extends Component {
     constructor(props) {
@@ -27,7 +28,6 @@ class MainNavigation extends Component {
 
         // If menu is hidden and burger displayed
         if (window.innerWidth <= 760) {
-            console.log('yes')
             if (this.state.toggledNav) this.setState({ toggledNav: false })
             if (!this.state.toggledNav) this.setState({ toggledNav: true })
         } else {
@@ -59,6 +59,10 @@ class MainNavigation extends Component {
             </nav>
         )
     }
+}
+
+MainNavigation.propTypes = {
+    data: PropTypes.array.isRequired,
 }
 
 export default MainNavigation

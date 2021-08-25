@@ -70,7 +70,6 @@ class App extends Component {
                                         data={this.state.websiteContent}
                                         key={this.state.key}
                                         id={match.params.id}
-                                        displayInfoBox={this.displayInfoBox}
                                     />
                                 )}
                             </>

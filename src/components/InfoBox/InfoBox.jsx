@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import './InfoBox.scss'
 import Loader from 'components/Loader/Loader'
+import PropTypes from 'prop-types'
 
 class InfoBox extends Component {
     constructor(props) {
@@ -29,6 +30,12 @@ class InfoBox extends Component {
             </div>
         )
     }
+}
+
+InfoBox.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    errModal: PropTypes.bool.isRequired,
+    message: PropTypes.string.isRequired,
 }
 
 export default InfoBox

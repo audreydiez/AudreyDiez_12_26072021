@@ -3,6 +3,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 
 import './GoalTrackerPercentage.scss'
 import Loader from 'components/Loader/Loader'
+import PropTypes from 'prop-types'
+import AverageThemeRadar from 'components/Charts/AverageThemeRadar/AverageThemeRadar'
 
 class GoalTrackerPercentage extends Component {
     constructor(props) {
@@ -57,6 +59,13 @@ class GoalTrackerPercentage extends Component {
             this.displayChart()
         )
     }
+}
+
+GoalTrackerPercentage.propTypes = {
+    contentData: PropTypes.object.isRequired,
+    userID: PropTypes.string.isRequired,
+    userScore: PropTypes.number,
+    message: PropTypes.string,
 }
 
 export default GoalTrackerPercentage

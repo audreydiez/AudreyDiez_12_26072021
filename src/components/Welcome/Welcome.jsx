@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import './Welcome.scss'
+import PropTypes from 'prop-types'
 
 class Welcome extends Component {
     render() {
@@ -13,6 +14,11 @@ class Welcome extends Component {
             </div>
         )
     }
+}
+
+Welcome.propTypes = {
+    contentData: PropTypes.object.isRequired,
+    userData: PropTypes.string.isRequired,
 }
 
 export default Welcome

@@ -6,6 +6,7 @@ import swimIcon from 'assets/images/swiming.svg'
 import bicycleIcon from 'assets/images/vtt.svg'
 import weightIcon from 'assets/images/weight.svg'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class SideNavigation extends Component {
     constructor(props) {
@@ -52,6 +53,10 @@ class SideNavigation extends Component {
             </div>
         )
     }
+}
+
+SideNavigation.propTypes = {
+    data: PropTypes.object.isRequired,
 }
 
 export default SideNavigation

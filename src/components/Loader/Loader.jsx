@@ -1,5 +1,7 @@
 import { Component } from 'react'
 import './Loader.scss'
+import PropTypes from 'prop-types'
+import GoalTrackerPercentage from 'components/Charts/GoalTrackerPercentage/GoalTrackerPercentage'
 
 class Loader extends Component {
     constructor(props) {
@@ -55,6 +57,10 @@ class Loader extends Component {
             </div>
         )
     }
+}
+
+Loader.propTypes = {
+    message: PropTypes.string,
 }
 
 export default Loader

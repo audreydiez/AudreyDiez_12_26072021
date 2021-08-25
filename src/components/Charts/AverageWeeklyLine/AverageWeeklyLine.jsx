@@ -14,13 +14,14 @@ import {
 import CustomTooltipLine from '../CustomTooltips/CustomTooltipLine/CustomTooltipLine'
 import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
 import Loader from '../../Loader/Loader'
+import PropTypes from 'prop-types'
+import DailyTrackerBar from 'components/Charts/DailyTrackerBar/DailyTrackerBar'
 
 class AverageWeeklyLine extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: this.props.userID,
             userID: this.props.userID,
             errModal: false,
             userAverageSession: [],
@@ -112,4 +113,10 @@ class AverageWeeklyLine extends Component {
         )
     }
 }
+
+AverageWeeklyLine.propTypes = {
+    contentData: PropTypes.object.isRequired,
+    userID: PropTypes.string.isRequired,
+}
+
 export default AverageWeeklyLine

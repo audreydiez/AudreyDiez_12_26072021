@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import CustomTooltipBar from '../CustomTooltips/CustomTooltipBar/CustomTooltipBar'
 import AxiosAPIProvider from 'Services/AxiosAPIProvider'
 import Loader from 'components/Loader/Loader'
+import PropTypes from 'prop-types'
 
 class DailyTrackerBar extends Component {
     constructor(props) {
@@ -129,6 +130,11 @@ class DailyTrackerBar extends Component {
             this.displayChart()
         )
     }
+}
+
+DailyTrackerBar.propTypes = {
+    contentData: PropTypes.object.isRequired,
+    userID: PropTypes.string.isRequired,
 }
 
 export default DailyTrackerBar

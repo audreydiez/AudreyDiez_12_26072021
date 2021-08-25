@@ -12,6 +12,7 @@ import Welcome from 'components/Welcome/Welcome'
 
 import AxiosAPIProvider from 'Services/AxiosAPIProvider'
 import InfoBox from 'components/InfoBox/InfoBox'
+import PropTypes from 'prop-types'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -139,6 +140,11 @@ class Dashboard extends Component {
             </>
         )
     }
+}
+
+Dashboard.propTypes = {
+    data: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
 }
 
 export default Dashboard
