@@ -60,12 +60,19 @@ class Dashboard extends Component {
         })
     }
 
-    // Allow display menu icons on middle devices screens with burger menu
+    /**
+     * Allow display menu icons on middle devices screens with burger menu
+     * @return  {void}
+     */
     toggleResponsiveIcons = () => {
         const newKey = this.state.key + 1
         this.setState({ iconsToggled: !this.state.iconsToggled, key: newKey })
     }
 
+    /**
+     * Allow display menu icons on middle devices screens with burger menu
+     * @return  {JSX.Element}
+     */
     displayDashboard() {
         return (
             <div className="wrapper">

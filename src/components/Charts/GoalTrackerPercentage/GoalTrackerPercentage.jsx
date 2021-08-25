@@ -4,7 +4,6 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import './GoalTrackerPercentage.scss'
 import Loader from 'components/Loader/Loader'
 import PropTypes from 'prop-types'
-import AverageThemeRadar from 'components/Charts/AverageThemeRadar/AverageThemeRadar'
 
 class GoalTrackerPercentage extends Component {
     constructor(props) {
@@ -20,6 +19,10 @@ class GoalTrackerPercentage extends Component {
         }
     }
 
+    /**
+     * Create the chart filled with website texts and user data
+     * @return  {JSX.Element}
+     */
     displayChart() {
         return (
             <div className="goalTrackerPercentage-chart">

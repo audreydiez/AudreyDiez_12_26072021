@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './CustomTooltipLine.scss'
 import PropTypes from 'prop-types'
-import CustomTooltipBar from 'components/Charts/CustomTooltips/CustomTooltipBar/CustomTooltipBar'
 
 class CustomTooltipLine extends Component {
     render() {
@@ -19,7 +18,7 @@ class CustomTooltipLine extends Component {
     }
 }
 
-CustomTooltipBar.propTypes = {
+CustomTooltipLine.propTypes = {
     payload: PropTypes.array,
     active: PropTypes.bool,
 }

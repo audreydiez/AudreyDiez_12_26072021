@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './CustomTooltipBar.scss'
 import PropTypes from 'prop-types'
-import AverageWeeklyLine from 'components/Charts/AverageWeeklyLine/AverageWeeklyLine'
 
 class CustomTooltipBar extends Component {
     render() {

@@ -33,6 +33,10 @@ class AverageThemeRadar extends Component {
         })
     }
 
+    /**
+     * Create the chart filled with website texts and user data
+     * @return  {JSX.Element}
+     */
     displayChart() {
         return (
             <div className="radar-chart">

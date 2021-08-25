@@ -1,5 +1,5 @@
 import axios from 'axios'
-import ContentData from './ContentData'
+import ContentData from 'Services/ContentData'
 import UserDetails from './UserDetails'
 import UserActivity from './UserActivity'
 import UserAverageSession from './UserAverageSession'
@@ -12,6 +12,10 @@ export default class AxiosAPIProvider {
         this.apiURL = 'http://localhost:8000/'
     }
 
+    /**
+     * Fetch Website content (texts) from API / JSON local file
+     * @return  {Array.Object}
+     */
     async getContentData() {
         const data = []
 
@@ -29,6 +33,11 @@ export default class AxiosAPIProvider {
         return data
     }
 
+    /**
+     * Fetch user details from API
+     * @param {string} userID - ID of the user logged.
+     * @return  {Array.Object}
+     */
     async getUserDetails(userID) {
         const data = []
 
@@ -45,6 +54,11 @@ export default class AxiosAPIProvider {
         return data
     }
 
+    /**
+     * Fetch user activity from API
+     * @param {string} userID - ID of the user logged.
+     * @return  {Array.Object}
+     */
     async getUserActivity(userID) {
         const data = []
 
@@ -62,6 +76,11 @@ export default class AxiosAPIProvider {
         return data
     }
 
+    /**
+     * Fetch user sessions from API
+     * @param {string} userID - ID of the user logged.
+     * @return  {Array.Object}
+     */
     async getUserAverageSession(userID) {
         const data = []
 
@@ -79,6 +98,11 @@ export default class AxiosAPIProvider {
         return data
     }
 
+    /**
+     * Fetch user performance from API
+     * @param {string} userID - ID of the user logged.
+     * @return  {Array.Object}
+     */
     async getUserPerformance(userID) {
         const data = []
 

@@ -1,6 +1,11 @@
 export default class UserAverageSession {
     constructor(response) {}
 
+    /**
+     * Take user sessions data fetched and return ready-to-use object to component
+     * @param {Object} fetchedData - Data from the API
+     * @return  {Object} - Formatted data for the component
+     */
     static getFromResponse(fetchedData) {
         const sessionsData = []
         const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D']

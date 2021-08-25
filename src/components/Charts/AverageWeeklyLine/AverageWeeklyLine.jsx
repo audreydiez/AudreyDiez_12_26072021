@@ -15,7 +15,6 @@ import CustomTooltipLine from '../CustomTooltips/CustomTooltipLine/CustomTooltip
 import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
 import Loader from '../../Loader/Loader'
 import PropTypes from 'prop-types'
-import DailyTrackerBar from 'components/Charts/DailyTrackerBar/DailyTrackerBar'
 
 class AverageWeeklyLine extends Component {
     constructor(props) {
@@ -51,6 +50,11 @@ class AverageWeeklyLine extends Component {
             }
         })
     }
+
+    /**
+     * Create the chart filled with website texts and user data
+     * @return  {JSX.Element}
+     */
     displayChart() {
         return (
             <div className="line-chart">

@@ -22,6 +22,10 @@ class SideNavigation extends Component {
         window.addEventListener('resize', this.updateDimension)
     }
 
+    /**
+     * Change browser dimensions states when resizing
+     * @return  {void}
+     */
     updateDimension = () => {
         this.setState({ windowWidth: window.innerWidth })
         this.setState({ iconsToggled: false })

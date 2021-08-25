@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import './MacroTracker.scss'
 import PropTypes from 'prop-types'
-import GoalTrackerPercentage from 'components/Charts/GoalTrackerPercentage/GoalTrackerPercentage'
 
 class MacroTracker extends Component {
     render() {

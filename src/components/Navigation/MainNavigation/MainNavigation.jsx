@@ -13,6 +13,11 @@ class MainNavigation extends Component {
             toggledNav: false,
         }
     }
+
+    /**
+     * Create menu nav links from the props data already fetched
+     * @return  {JSX.Element[]}
+     */
     getNavLinks = () => {
         return this.props.data.map((link, index) => (
             <li key={index} className="main-nav__links">
@@ -23,6 +28,10 @@ class MainNavigation extends Component {
         ))
     }
 
+    /**
+     * Display the burger menu when window width is too small for menu
+     * @return  {void}
+     */
     toggleResponsiveMenu = () => {
         this.props.toggleResponsiveIcons()
 

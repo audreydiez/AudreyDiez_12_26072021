@@ -51,6 +51,10 @@ class DailyTrackerBar extends Component {
         })
     }
 
+    /**
+     * Create the chart filled with website texts and user data
+     * @return  {JSX.Element}
+     */
     displayChart() {
         return (
             <>

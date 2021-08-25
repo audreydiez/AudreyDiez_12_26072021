@@ -1,6 +1,11 @@
 export default class UserActivity {
     constructor(response) {}
 
+    /**
+     * Take user activity data fetched and return ready-to-use object to component
+     * @param {Object} fetchedData - Data from the API
+     * @return  {Object} - Formatted data for the component
+     */
     static getFromResponse(fetchedData) {
         const sessionsData = []
         fetchedData.data.data.sessions.map((session) => {
