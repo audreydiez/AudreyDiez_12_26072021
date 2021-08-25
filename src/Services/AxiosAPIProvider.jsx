@@ -6,11 +6,17 @@ import UserAverageSession from './UserAverageSession'
 import UserPerformance from './UserPerformance'
 
 export default class AxiosAPIProvider {
+    websiteContentURL
+    constructor() {
+        this.websiteContentURL = 'data/'
+        this.apiURL = 'http://localhost:8000/'
+    }
+
     async getContentData() {
         const data = []
 
         await axios
-            .get('data/contentFR.json')
+            .get(this.websiteContentURL + 'contentFR.json')
             .then(function (response) {
                 data.content = ContentData.getFromResponse(response)
                 data.overlay = false
@@ -27,7 +33,7 @@ export default class AxiosAPIProvider {
         const data = []
 
         await axios
-            .get('http://localhost:8000/user/' + userID)
+            .get(this.apiURL + 'user/' + userID)
             .then(function (response) {
                 data.content = UserDetails.getFromResponse(response)
                 data.overlay = false
@@ -43,7 +49,7 @@ export default class AxiosAPIProvider {
         const data = []
 
         await axios
-            .get('http://localhost:8000/user/' + userID + '/activity')
+            .get(this.apiURL + 'user/' + userID + '/activity')
             .then(function (response) {
                 data.content = UserActivity.getFromResponse(response)
                 data.loading = false
@@ -60,7 +66,7 @@ export default class AxiosAPIProvider {
         const data = []
 
         await axios
-            .get('http://localhost:8000/user/' + userID + '/average-sessions')
+            .get(this.apiURL + 'user/' + userID + '/average-sessions')
             .then(function (response) {
                 data.content = UserAverageSession.getFromResponse(response)
                 data.loading = false
@@ -77,7 +83,7 @@ export default class AxiosAPIProvider {
         const data = []
 
         await axios
-            .get('http://localhost:8000/user/' + userID + '/performance')
+            .get(this.apiURL + 'user/' + userID + '/performance')
             .then(function (response) {
                 data.content = UserPerformance.getFromResponse(response)
                 data.loading = false
