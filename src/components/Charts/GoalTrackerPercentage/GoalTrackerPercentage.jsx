@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 
 import './GoalTrackerPercentage.scss'
-import Loader from '../../Loader/Loader'
+import Loader from 'components/Loader/Loader'
 
 class GoalTrackerPercentage extends Component {
     constructor(props) {

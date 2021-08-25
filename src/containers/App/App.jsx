@@ -5,10 +5,10 @@ import ErrorPage from 'components/ErrorPage/ErrorPage'
 import { Component } from 'react/cjs/react.production.min'
 import Dashboard from 'containers/Dashboard/Dashboard'
 
-import websiteContentDefault from './../../assets/data/content_default.json'
+import websiteContentDefault from 'assets/data/content_default.json'
 
-import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
-import InfoBox from '../../components/InfoBox/InfoBox'
+import AxiosAPIProvider from 'Services/AxiosAPIProvider'
+import InfoBox from 'components/InfoBox/InfoBox'
 
 class App extends Component {
     constructor(props) {

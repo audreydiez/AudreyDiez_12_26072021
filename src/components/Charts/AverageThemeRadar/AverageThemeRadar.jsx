@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import './AverageThemeRadar.scss'
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts'
-import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
-import Loader from '../../Loader/Loader'
+import AxiosAPIProvider from 'Services/AxiosAPIProvider'
+import Loader from 'components/Loader/Loader'
 
 class AverageThemeRadar extends Component {
     constructor(props) {

@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import './InfoBox.scss'
-import Loader from '../Loader/Loader'
+import Loader from 'components/Loader/Loader'
 
 class InfoBox extends Component {
     constructor(props) {

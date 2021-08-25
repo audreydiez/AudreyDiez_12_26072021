@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import './MainNavigation.scss'
 
-import logo from '../../../assets/images/logo.svg'
+import logo from 'assets/images/logo.svg'
 import { Link } from 'react-router-dom'
 
 class MainNavigation extends Component {

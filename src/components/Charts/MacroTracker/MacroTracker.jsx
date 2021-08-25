@@ -1,10 +1,8 @@
 import { Component } from 'react'
 import './MacroTracker.scss'
-import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
 
 class MacroTracker extends Component {
     render() {
-        console.log(this.props.userData)
         return (
             <>
                 {/*Create all trackers*/}

@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import './Loader.scss'
-import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
 
 class Loader extends Component {
     constructor(props) {

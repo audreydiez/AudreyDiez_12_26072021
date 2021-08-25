@@ -3,8 +3,8 @@ import './DailyTrackerBar.scss'
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import CustomTooltipBar from '../CustomTooltips/CustomTooltipBar/CustomTooltipBar'
-import AxiosAPIProvider from '../../../Services/AxiosAPIProvider'
-import Loader from '../../Loader/Loader'
+import AxiosAPIProvider from 'Services/AxiosAPIProvider'
+import Loader from 'components/Loader/Loader'
 
 class DailyTrackerBar extends Component {
     constructor(props) {

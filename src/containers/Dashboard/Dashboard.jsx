@@ -2,17 +2,16 @@ import { Component } from 'react'
 import './Dashboard.scss'
 
 import MainNavigation from 'components/Navigation/MainNavigation/MainNavigation'
-import SideNavigation from '../../components/Navigation/SideNavigation/SideNavigation'
+import SideNavigation from 'components/Navigation/SideNavigation/SideNavigation'
 import AverageWeeklyLine from 'components/Charts/AverageWeeklyLine/AverageWeeklyLine'
 import AverageThemeRadar from 'components/Charts/AverageThemeRadar/AverageThemeRadar'
 import DailyTrackerBar from 'components/Charts/DailyTrackerBar/DailyTrackerBar'
 import GoalTrackerPercentage from 'components/Charts/GoalTrackerPercentage/GoalTrackerPercentage'
 import MacroTracker from 'components/Charts/MacroTracker/MacroTracker'
-import Welcome from '../../components/Welcome/Welcome'
+import Welcome from 'components/Welcome/Welcome'
 
-import AxiosAPIProvider from '../../Services/AxiosAPIProvider'
-import InfoBox from '../../components/InfoBox/InfoBox'
-import Loader from '../../components/Loader/Loader'
+import AxiosAPIProvider from 'Services/AxiosAPIProvider'
+import InfoBox from 'components/InfoBox/InfoBox'
 
 class Dashboard extends Component {
     constructor(props) {
