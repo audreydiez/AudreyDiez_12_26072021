@@ -1,1 +1,21 @@
 @import 'assets/styles/mixins';
+
+.error-container {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    align-items: center;
+    justify-content: center;
+
+    .message {
+        padding: 3rem;
+        background-color: $colour-secondary;
+        color: $font-color-light;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+}

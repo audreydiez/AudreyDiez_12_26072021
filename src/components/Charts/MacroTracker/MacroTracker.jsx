@@ -16,7 +16,7 @@ class MacroTracker extends Component {
                                 {/*// If fetching data failed*/}
                                 {typeof this.props.userData.length === 'undefined' ? (
                                     <>
-                                        {/*Match content value (name) with userData for display macro*/}
+                                        {/*Match content value (name) with userData */}
                                         {Object.entries(this.props.userData).map(([key, value]) => {
                                             if (key.toString() === contentData.name.toString()) {
                                                 return (

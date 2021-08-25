@@ -1,14 +1,14 @@
 import './App.scss'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
-import ErrorPage from 'components/ErrorPage/ErrorPage'
 import { Component } from 'react/cjs/react.production.min'
-import Dashboard from 'containers/Dashboard/Dashboard'
 
 import websiteContentDefault from 'assets/data/content_default.json'
 
 import AxiosAPIProvider from 'Services/AxiosAPIProvider'
+
+import Dashboard from 'containers/Dashboard/Dashboard'
 import InfoBox from 'components/InfoBox/InfoBox'
+import ErrorPage from 'components/ErrorPage/ErrorPage'
 
 class App extends Component {
     constructor(props) {
@@ -19,7 +19,6 @@ class App extends Component {
             loading: true,
             errModal: false,
             overlay: false,
-
             key: 0,
         }
 
