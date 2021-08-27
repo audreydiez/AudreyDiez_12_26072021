@@ -32,30 +32,32 @@ class AverageWeeklyLine extends Component {
     }
 
     componentDidMount() {
-        this.apiProvider.getUserAverageSession(this.state.userID).then((response) => {
-            if (response.fail) {
-                this.setState({
-                    loading: response.loading,
-                    message: response.errorMsg,
-                    key: this.state.key + 1,
-                })
-            } else {
+        // Fetching data from API and populate states
+        this.apiProvider
+            .getUserAverageSession(this.state.userID)
+            .then((response) => {
                 this.setState({
                     userAverageSession: response.content.userAverageSession,
                     minValueYaxis: response.content.minValueYaxis,
                     maxValueYaxis: response.content.maxValueYaxis,
-                    loading: response.loading,
+                    loading: false,
                     key: this.state.key + 1,
                 })
-            }
-        })
+            })
+            .catch((error) => {
+                this.setState({
+                    message: error.message,
+                    loading: true,
+                    key: this.state.key + 1,
+                })
+            })
     }
 
     /**
      * Create the chart filled with website texts and user data
      * @return  {JSX.Element}
      */
-    displayChart() {
+    displayLineChart() {
         return (
             <div className="line-chart">
                 <div className="average-sessions-chart-legend">{this.props.contentData.title}</div>
@@ -113,13 +115,15 @@ class AverageWeeklyLine extends Component {
         return this.state.loading ? (
             <Loader fill="#e60000" message={this.state.message} key={this.state.key} />
         ) : (
-            this.displayChart()
+            this.displayLineChart()
         )
     }
 }
 
 AverageWeeklyLine.propTypes = {
-    contentData: PropTypes.object.isRequired,
+    contentData: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+    }),
     userID: PropTypes.string.isRequired,
 }
 

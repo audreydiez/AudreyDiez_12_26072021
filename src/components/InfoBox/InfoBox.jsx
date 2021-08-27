@@ -33,7 +33,7 @@ class InfoBox extends Component {
 }
 
 InfoBox.propTypes = {
-    loading: PropTypes.bool.isRequired,
+    loading: PropTypes.bool,
     errModal: PropTypes.bool.isRequired,
     message: PropTypes.string.isRequired,
 }

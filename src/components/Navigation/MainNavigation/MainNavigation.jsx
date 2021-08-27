@@ -45,6 +45,7 @@ class MainNavigation extends Component {
     }
 
     render() {
+        console.log(this.props.data)
         return (
             <nav className="navigation">
                 <ul className="logo">
@@ -71,7 +72,7 @@ class MainNavigation extends Component {
 }
 
 MainNavigation.propTypes = {
-    data: PropTypes.array.isRequired,
+    data: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default MainNavigation

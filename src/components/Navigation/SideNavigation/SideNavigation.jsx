@@ -60,7 +60,15 @@ class SideNavigation extends Component {
 }
 
 SideNavigation.propTypes = {
-    data: PropTypes.object.isRequired,
+    data: PropTypes.shape({
+        copyrights: PropTypes.string.isRequired,
+        menuIcon: PropTypes.shape({
+            yoga: PropTypes.string.isRequired,
+            swim: PropTypes.string.isRequired,
+            bicycle: PropTypes.string.isRequired,
+            weightLift: PropTypes.string.isRequired,
+        }),
+    }),
 }
 
 export default SideNavigation

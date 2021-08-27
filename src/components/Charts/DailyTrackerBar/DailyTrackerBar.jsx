@@ -30,32 +30,34 @@ class DailyTrackerBar extends Component {
     }
 
     componentDidMount() {
-        this.apiProvider.getUserActivity(this.state.userID).then((response) => {
-            if (response.fail) {
-                this.setState({
-                    loading: response.loading,
-                    message: response.errorMsg,
-                    key: this.state.key + 1,
-                })
-            } else {
+        // Fetching data from API and populate states
+        this.apiProvider
+            .getUserActivity(this.state.userID)
+            .then((response) => {
                 this.setState({
                     userActivity: response.content.userActivity,
                     minValueYaxisKg: response.content.minValueYaxisKg,
                     maxValueYaxisKg: response.content.maxValueYaxisKg,
                     minValueYaxisKcal: response.content.minValueYaxisKcal,
                     maxValueYaxisKcal: response.content.maxValueYaxisKcal,
-                    loading: response.loading,
+                    loading: false,
                     key: this.state.key + 1,
                 })
-            }
-        })
+            })
+            .catch((error) => {
+                this.setState({
+                    loading: true,
+                    message: error.message,
+                    key: this.state.key + 1,
+                })
+            })
     }
 
     /**
-     * Create the chart filled with website texts and user data
+     * Create the bar chart, filled with website texts and user data
      * @return  {JSX.Element}
      */
-    displayChart() {
+    displayBarChart() {
         return (
             <>
                 <div className="activity-chart-legend">
@@ -131,13 +133,17 @@ class DailyTrackerBar extends Component {
         return this.state.loading ? (
             <Loader fill="#e60000" message={this.state.message} key={this.state.key} />
         ) : (
-            this.displayChart()
+            this.displayBarChart()
         )
     }
 }
 
 DailyTrackerBar.propTypes = {
-    contentData: PropTypes.object.isRequired,
+    contentData: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        weight: PropTypes.string.isRequired,
+        CaloriesBurned: PropTypes.string.isRequired,
+    }),
     userID: PropTypes.string.isRequired,
 }
 

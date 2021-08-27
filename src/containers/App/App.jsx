@@ -27,26 +27,26 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.apiProvider.getContentData().then((response) => {
-            this.setState({})
-
-            if (response.fail) {
-                this.setState({
-                    websiteContent: websiteContentDefault,
-                    message: response.errorMsg + ' : Erreur de chargement du site',
-                    errModal: response.fail,
-                    loading: false,
-                    overlay: response.fail,
-                    key: this.state.key + 1,
-                })
-            } else {
+        // Fetching website content data from API and populate states
+        this.apiProvider
+            .getContentData()
+            .then((response) => {
                 this.setState({
                     websiteContent: response.content,
                     loading: false,
                     key: this.state.key + 1,
                 })
-            }
-        })
+            })
+            .catch((error) => {
+                this.setState({
+                    websiteContent: websiteContentDefault,
+                    message: error.message + ' : Erreur de chargement du site',
+                    errModal: true,
+                    loading: false,
+                    overlay: true,
+                    key: this.state.key + 1,
+                })
+            })
     }
 
     render() {

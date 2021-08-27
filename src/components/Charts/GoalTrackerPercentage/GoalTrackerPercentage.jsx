@@ -23,7 +23,7 @@ class GoalTrackerPercentage extends Component {
      * Create the chart filled with website texts and user data
      * @return  {JSX.Element}
      */
-    displayChart() {
+    displayPieChart() {
         return (
             <div className="goalTrackerPercentage-chart">
                 <div className="title">{this.props.contentData.title}</div>
@@ -59,13 +59,16 @@ class GoalTrackerPercentage extends Component {
         return this.props.userScore === null ? (
             <Loader fill="#e60000" message={this.state.message} />
         ) : (
-            this.displayChart()
+            this.displayPieChart()
         )
     }
 }
 
 GoalTrackerPercentage.propTypes = {
-    contentData: PropTypes.object.isRequired,
+    contentData: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        goal: PropTypes.string.isRequired,
+    }),
     userID: PropTypes.string.isRequired,
     userScore: PropTypes.number,
     message: PropTypes.string,

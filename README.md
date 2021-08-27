@@ -19,7 +19,7 @@
 
 - Recommended text editor: [WebStorm](https://www.jetbrains.com/fr-fr/webstorm/)
 
-### Prerequisites for dependencies
+### Prerequisites for install
 
 - [Git](https://git-scm.com/) to clone the repository
 

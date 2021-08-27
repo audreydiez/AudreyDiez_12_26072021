@@ -28,7 +28,6 @@ class Dashboard extends Component {
             userScore: null,
 
             errModal: false,
-            loading: true,
             overlay: false,
             key: 0,
         }
@@ -37,18 +36,10 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        this.apiProvider.getUserDetails(this.state.userID).then((response) => {
-            if (response.fail) {
-                this.setState({
-                    message:
-                        response.errorMsg + " : Erreur de chargement des détails de l'utilisateur",
-                    errModal: response.fail,
-                    loading: false,
-                    overlay: response.fail,
-
-                    key: this.state.key + 1,
-                })
-            } else {
+        // Fetching data from API and populate states
+        this.apiProvider
+            .getUserDetails(this.state.userID)
+            .then((response) => {
                 this.setState({
                     firstName: response.content.firstName,
                     macroNutriments: response.content.macroNutriments,
@@ -56,8 +47,15 @@ class Dashboard extends Component {
                     loading: false,
                     key: this.state.key + 1,
                 })
-            }
-        })
+            })
+            .catch((error) => {
+                this.setState({
+                    message: error.message + " : Erreur de chargement des détails de l'utilisateur",
+                    errModal: true,
+                    overlay: true,
+                    key: this.state.key + 1,
+                })
+            })
     }
 
     /**
@@ -137,7 +135,6 @@ class Dashboard extends Component {
             <>
                 {this.state.overlay && (
                     <InfoBox
-                        loading={this.state.loading}
                         errModal={this.state.errModal}
                         message={this.state.message}
                         key={this.state.key + 1}

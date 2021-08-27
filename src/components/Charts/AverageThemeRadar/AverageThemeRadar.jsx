@@ -18,26 +18,29 @@ class AverageThemeRadar extends Component {
     }
 
     componentDidMount() {
-        this.apiProvider.getUserPerformance(this.state.userID).then((response) => {
-            if (response.fail) {
-                this.setState({
-                    loading: response.loading,
-                    message: response.errorMsg,
-                })
-            } else {
+        // Fetching data from API and populate states
+        this.apiProvider
+            .getUserPerformance(this.state.userID)
+            .then((response) => {
                 this.setState({
                     userAverageThemeData: response.content,
-                    loading: response.loading,
+                    loading: false,
+                    key: this.state.key + 1,
                 })
-            }
-        })
+            })
+            .catch((error) => {
+                this.setState({
+                    message: error.message,
+                    loading: true,
+                })
+            })
     }
 
     /**
      * Create the chart filled with website texts and user data
      * @return  {JSX.Element}
      */
-    displayChart() {
+    displayRadarChart() {
         return (
             <div className="radar-chart">
                 <ResponsiveContainer width="100%" height="100%">
@@ -74,7 +77,7 @@ class AverageThemeRadar extends Component {
         return this.state.loading ? (
             <Loader fill="#e60000" message={this.state.message} key={this.state.key} />
         ) : (
-            this.displayChart()
+            this.displayRadarChart()
         )
     }
 }
