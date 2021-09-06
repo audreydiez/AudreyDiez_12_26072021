@@ -45,7 +45,6 @@ class MainNavigation extends Component {
     }
 
     render() {
-        console.log(this.props.data)
         return (
             <nav className="navigation">
                 <ul className="logo">

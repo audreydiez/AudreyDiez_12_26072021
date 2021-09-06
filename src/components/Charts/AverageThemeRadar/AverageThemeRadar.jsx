@@ -12,6 +12,8 @@ class AverageThemeRadar extends Component {
         this.state = {
             userID: this.props.userID,
             userAverageThemeData: [{ subject: '', value: 0 }],
+            message: '',
+            loading: true,
         }
 
         this.apiProvider = new AxiosAPIProvider()
@@ -29,9 +31,11 @@ class AverageThemeRadar extends Component {
                 })
             })
             .catch((error) => {
+                console.log(error.message)
                 this.setState({
                     message: error.message,
                     loading: true,
+                    key: this.state.key + 1,
                 })
             })
     }

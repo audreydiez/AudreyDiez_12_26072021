@@ -22,10 +22,12 @@ class AverageWeeklyLine extends Component {
 
         this.state = {
             userID: this.props.userID,
-            errModal: false,
             userAverageSession: [],
             minValueYaxis: 0,
             maxValueYaxis: 0,
+            message: '',
+            loading: true,
+            key: 0,
         }
 
         this.apiProvider = new AxiosAPIProvider()

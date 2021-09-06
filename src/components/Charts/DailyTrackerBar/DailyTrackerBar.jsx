@@ -20,9 +20,7 @@ class DailyTrackerBar extends Component {
             minValueYaxisKcal: 0,
             maxValueYaxisKcal: 0,
 
-            errModal: false,
             loading: true,
-
             key: 0,
         }
 
