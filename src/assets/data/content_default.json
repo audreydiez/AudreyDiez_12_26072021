@@ -1,0 +1,59 @@
+{
+    "connexion": {
+        "title": "",
+        "button": ""
+    },
+
+    "sideNav": {
+        "menuIcon": {
+            "yoga": "",
+            "swim": "",
+            "bicycle": "",
+            "weightLift": ""
+        },
+        "copyrights": ""
+    },
+    "navLinks": ["", "", "", ""],
+
+    "welcome": {
+        "title": "",
+        "subTitle": ""
+    },
+
+    "macroNutriments": [
+        {
+            "name": "",
+            "file": "",
+            "alt": "",
+            "value": ""
+        },
+        {
+            "name": "",
+            "file": "",
+            "alt": "",
+            "value": ""
+        },
+        {
+            "name": "",
+            "file": "",
+            "alt": "",
+            "value": ""
+        },
+        { "name": "", "file": "", "alt": "", "value": "" }
+    ],
+    "charts": {
+        "AverageThemeRadar": [],
+        "DailyTrackerBar": {
+            "title": "",
+            "weight": "",
+            "CaloriesBurned": ""
+        },
+        "AverageWeeklyWorkoutLine": {
+            "title": ""
+        },
+        "GoalTrackerPercentage": {
+            "title": "",
+            "goal": ""
+        }
+    }
+}

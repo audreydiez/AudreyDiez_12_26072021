@@ -1,0 +1,16 @@
+@import 'assets/styles/mixins';
+
+.tooltip-container {
+    background-color: $colour-primary;
+    color: $font-color-light;
+    font-size: 0.9rem;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 1rem;
+
+    & > div:nth-child(1) {
+        margin-bottom: 1rem;
+    }
+}

@@ -1,0 +1,59 @@
+{
+    "connexion": {
+        "title": "Bienvenue",
+        "button": "Voir mon dashboard"
+    },
+
+    "sideNav": {
+        "menuIcon": {
+            "yoga": "Yoga",
+            "swim": "Natation",
+            "bicycle": "Vélo",
+            "weightLift": "Musculation"
+        },
+        "copyrights": "Copyright, SportSee 2020"
+    },
+    "navLinks": ["Accueil", "Profil", "Réglages", "Communauté"],
+
+    "welcome": {
+        "title": "Bonjour",
+        "subTitle": "Félicitation ! Vous avez explosé vos objectifs hier \uD83D\uDC4F"
+    },
+
+    "macroNutriments": [
+        {
+            "name": "calorieCount",
+            "file": "calories-icon.svg",
+            "alt": "Calories",
+            "value": "kCal"
+        },
+        {
+            "name": "proteinCount",
+            "file": "protein-icon.svg",
+            "alt": "Protéines",
+            "value": "g"
+        },
+        {
+            "name": "carbohydrateCount",
+            "file": "carbs-icon.svg",
+            "alt": "Glucides",
+            "value": "g"
+        },
+        { "name": "lipidCount", "file": "fat-icon.svg", "alt": "Lipides", "value": "g" }
+    ],
+    "charts": {
+        "AverageThemeRadar": [],
+        "DailyTrackerBar": {
+            "title": "Activité quotidienne",
+            "weight": "Poids (kg)",
+            "CaloriesBurned": "Calories brûlées (kCal)"
+        },
+        "AverageWeeklyWorkoutLine": {
+            "title": "Durée moyenne des sessions"
+        },
+        "GoalTrackerPercentage": {
+            "title": "Score",
+            "goal": "de votre objectif"
+        }
+    }
+}
